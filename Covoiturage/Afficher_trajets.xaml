@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="Covoiturage.Afficher_trajets"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Covoiturage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Orientation="Vertical">
+        <GridView x:Name="lvListe">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:Trajets">
+                    <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Nom du chauffeur :" Margin="5,5,5,10"/>
+                            <TextBlock  Text="{x:Bind Chauffeur}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Nombre de place :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Nb_places}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ville de départ :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Ville_depart}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Heure de départ :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Heure_depart}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Villes d'arrêt :" Margin="5,5,5,10"/>
+                            <ListView>
+                                <DataTemplate x:DataType="local:Arrêt">
+                                    <TextBlock Text="{x:Bind Ville_arret}" Margin="5,5,5,10"/>
+                                </DataTemplate>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ville d'arrivée :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Ville_arrivee}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </StackPanel>
+</Page>

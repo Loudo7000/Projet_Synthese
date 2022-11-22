@@ -5,7 +5,6 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Org.BouncyCastle.Asn1.X509.Qualified;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,15 +19,14 @@ using Windows.Foundation.Collections;
 namespace Covoiturage
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : Window
+    public sealed partial class Afficher_trajets : Page
     {
-        public MainWindow()
+        public Afficher_trajets()
         {
             this.InitializeComponent();
-            mainFrame.Navigate(typeof(Afficher_trajets));
+            lvListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
         }
-
     }
 }
