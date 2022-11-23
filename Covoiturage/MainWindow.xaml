@@ -7,7 +7,80 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="main2" >Click Me</Button>
-    </StackPanel>
+    <NavigationView Background="DarkBlue" 
+                    PaneDisplayMode="Left" 
+                    PaneTitle="Invité" 
+                    IsBackEnabled="True" 
+                    IsSettingsVisible="False"
+                    SelectionChanged="NavigationView_SelectionChanged"
+                    >
+
+        <NavigationView.Header>
+            <TextBlock Text="En-tete" x:Name="tblentete" />
+        </NavigationView.Header>
+
+
+        <NavigationView.MenuItems>
+<!--Accueil-->
+            <NavigationViewItemHeader Content="Accueil" Margin="0,10,0,0"/>
+            <NavigationViewItem Content="Trajet du jour" Tag="trajet" Icon="Map"/>
+            <NavigationViewItemSeparator/>
+
+<!--Passager-->
+            <NavigationViewItemHeader Content="Passager" Margin="0,10,0,0"/>
+
+            <NavigationViewItem Tag="inscrire">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE804;" FontFamily="Segoe MDL2 Assets" FontSize="18" Margin="3,0,14,0"/>
+                    <TextBlock Text="S'inscrire sur un trajet" VerticalAlignment="Center"/>
+                </StackPanel>
+            </NavigationViewItem>
+            <NavigationViewItemSeparator/>
+
+<!--Chauffeur-->
+            <NavigationViewItemHeader Content="Chauffeur" Margin="0,10,0,0"/>
+
+            <NavigationViewItem Content="Créer un Trajet" Tag="Trajetch" Icon="Add"/>
+            
+            <NavigationViewItem Content="Historique" Tag="Histo" Icon="AllApps"/>
+            <NavigationViewItemSeparator/>
+
+<!--Admin-->
+            <NavigationViewItemHeader Content="Admin" Margin="0,10,0,0"/>
+            
+            <NavigationViewItem Content="Ajouts d'une Ville" Tag="ville" Icon="Add"/>
+            
+            <NavigationViewItem Tag="TrajetInf">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xF142;" FontFamily="Segoe MDL2 Assets" FontSize="26" Margin="0,0,07,0"/>
+                    <TextBlock Text="Info Trajet" VerticalAlignment="Center"/>
+                </StackPanel>
+            </NavigationViewItem>
+            
+            <NavigationViewItem Tag="revenu" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x0024;" FontFamily="Segoe UI Emoji" FontSize="20" Margin="6,0,16,0"/>
+                    <TextBlock Text="Revenue" VerticalAlignment="Center"/>
+                </StackPanel>
+            </NavigationViewItem>
+            <NavigationViewItemSeparator />
+                
+            
+            
+<!--Footer-->
+        </NavigationView.MenuItems>
+        <NavigationView.PaneFooter >
+            <StackPanel>
+                <NavigationViewItem Name="iDeconnexion" Content="Déconnexion" Icon="Switch" Tapped="iDeconnexion_Tapped" Visibility="Visible"/>
+                <NavigationViewItem Name="iConnexion" Content="Connexion" Icon="Account" Tapped="iConnexion_Tapped" Visibility="Visible"/>
+
+                
+            </StackPanel>
+
+        </NavigationView.PaneFooter>
+
+
+        <Frame x:Name="mainframe"/>
+
+    </NavigationView>
 </Window>
