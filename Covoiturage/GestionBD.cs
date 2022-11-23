@@ -62,16 +62,16 @@ namespace Covoiturage
 
         public ObservableCollection<Arrêt> GetVilleArret()
         {
-            MySqlCommand commande = new MySqlCommand();
+            MySqlCommand commande = new MySqlCommand("p_get_ville_arret");
             commande.Connection = con;
-            commande.CommandText = "p_get_ville_arret";
+            commande.CommandType = System.Data.CommandType.StoredProcedure;
             con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
             {
                 liste_ville.Add(new Arrêt()
                 {
-                    Ville_arret = r.GetString(""),
+                    Ville_arret = r.GetString("nom_ville"),
 
                 });
             }

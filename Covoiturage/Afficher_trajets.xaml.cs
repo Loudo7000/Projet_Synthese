@@ -26,7 +26,8 @@ namespace Covoiturage
         public Afficher_trajets()
         {
             this.InitializeComponent();
-            lvListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
+            //trajetListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
+            arretListe.ItemsSource = GestionBD.getInstance().GetVilleArret();
         }
     }
 }
