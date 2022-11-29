@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -32,8 +33,10 @@ namespace Covoiturage
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = (NavigationViewItem)args.SelectedItem;
-            tblentete.Text = item.Content.ToString();
-
+            if(item.Name.ToString() == "")
+                tblentete.Text = item.Content.ToString();
+            else
+                tblentete.Text = item.Tag.ToString();
             //switch (item.Content.ToString())
             //{
             //    case "Clients":
