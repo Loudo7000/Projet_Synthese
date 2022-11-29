@@ -5,7 +5,6 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Org.BouncyCastle.Asn1.X509.Qualified;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Protection.PlayReady;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,8 +27,34 @@ namespace Covoiturage
         public MainWindow()
         {
             this.InitializeComponent();
-            mainFrame.Navigate(typeof(Afficher_trajets));
         }
 
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            var item = (NavigationViewItem)args.SelectedItem;
+            tblentete.Text = item.Content.ToString();
+
+            //switch (item.Content.ToString())
+            //{
+            //    case "Clients":
+            //        mainframe.Navigate(typeof());
+            //        break;
+            //    case "Agenda":
+            //        mainframe.Navigate(typeof());
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
+
+        private void iDeconnexion_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void iConnexion_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
     }
 }
