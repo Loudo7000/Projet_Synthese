@@ -16,14 +16,14 @@
                     >
 
         <NavigationView.Header>
-            <TextBlock Text="En-tete" x:Name="tblentete" />
+            <TextBlock Text="Trajet du jour" x:Name="tblentete" />
         </NavigationView.Header>
 
 
         <NavigationView.MenuItems>
             <!--Accueil-->
             <NavigationViewItemHeader Content="Accueil" Margin="0,10,0,0"/>
-            <NavigationViewItem Content="Trajet du jour" Tag="trajet" Icon="Map"/>
+            <NavigationViewItem IsSelected="True" Content="Trajet du jour" Tag="trajet" Icon="Map"/>
             <NavigationViewItemSeparator/>
 
             <!--Passager-->

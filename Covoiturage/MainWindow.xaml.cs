@@ -28,26 +28,51 @@ namespace Covoiturage
         public MainWindow()
         {
             this.InitializeComponent();
+            mainFrame.Navigate(typeof(Afficher_trajets));
         }
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = (NavigationViewItem)args.SelectedItem;
-            if(item.Name.ToString() == "")
+            if (item.Name.ToString() == "")
+            {
                 tblentete.Text = item.Content.ToString();
+                switch (item.Tag.ToString())
+                {
+                    case "trajet":
+                        mainFrame.Navigate(typeof(Afficher_trajets));
+                        break;
+                    case "Trajetch":
+                        mainFrame.Navigate(typeof(Ajout_trajet));
+                        break;
+                    case "Histo":
+                        mainFrame.Navigate(typeof(Historique));
+                        break;
+                    case "ville":
+                        mainFrame.Navigate(typeof(Ajout_ville));
+                        break;
+                    default:
+                        break;
+                }
+            }
             else
+            {
                 tblentete.Text = item.Tag.ToString();
-            //switch (item.Content.ToString())
-            //{
-            //    case "Clients":
-            //        mainframe.Navigate(typeof());
-            //        break;
-            //    case "Agenda":
-            //        mainframe.Navigate(typeof());
-            //        break;
-            //    default:
-            //        break;
-            //}
+                switch (item.Name.ToString()) {
+                    case "inscrire":
+                        mainFrame.Navigate(typeof(Inscrire));
+                        break;
+                    case "TrajetInf":
+                        mainFrame.Navigate(typeof(Info_trajet));
+                        break;
+                    case "revenue":
+                        mainFrame.Navigate(typeof(Revenue));
+                        break;
+                    default:
+                        break;
+                }
+            }
+           
         }
 
         private void iDeconnexion_Tapped(object sender, TappedRoutedEventArgs e)

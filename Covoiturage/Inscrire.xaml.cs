@@ -1,4 +1,7 @@
-﻿using Microsoft.UI.Xaml;
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -21,13 +24,11 @@ namespace Covoiturage
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Afficher_trajets : Page
+    public sealed partial class Inscrire : Page
     {
-        public Afficher_trajets()
+        public Inscrire()
         {
             this.InitializeComponent();
-            trajetListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
-            
         }
     }
 }

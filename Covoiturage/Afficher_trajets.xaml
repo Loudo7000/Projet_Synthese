@@ -8,14 +8,18 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Orientation="Vertical">
+    <ScrollViewer>
         <GridView x:Name="trajetListe">
-            <!--<GridView.ItemTemplate>
-                <DataTemplate x:DataType="local:Trajets">-->
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:Trajets">
                     <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">
-                        <!--<StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Nom du chauffeur :" Margin="5,5,5,10"/>
                             <TextBlock  Text="{x:Bind Chauffeur}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Type de voiture :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Voiture}" Margin="5,5,5,10"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Nombre de place :" Margin="5,5,5,10"/>
@@ -26,24 +30,16 @@
                             <TextBlock Text="{x:Bind Ville_depart}" Margin="5,5,5,10"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Heure de départ :" Margin="5,5,5,10"/>
-                            <TextBlock Text="{x:Bind Heure_depart}" Margin="5,5,5,10"/>
-                        </StackPanel>-->
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Villes d'arrêt :" Margin="5,5,5,10"/>
-                            <ListView x:Name="arretListe" IsEnabled="False">
-                                <DataTemplate x:DataType="local:Arrêt">
-                                    <TextBlock Text="{x:Bind Ville_arret}" Margin="5,5,5,10"/>
-                                </DataTemplate>
-                            </ListView>
+                            <TextBlock Text="Date de départ :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
                         </StackPanel>
-                        <!--<StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Ville d'arrivée :" Margin="5,5,5,10"/>
-                            <TextBlock Text="{x:Bind Ville_arrivee}" Margin="5,5,5,10"/>
-                        </StackPanel>-->
+                            <TextBlock Text="{x:Bind Date_arrivee}" Margin="5,5,5,10"/>
+                        </StackPanel>
                     </StackPanel>
-                <!--</DataTemplate>
-            </GridView.ItemTemplate>-->
+                </DataTemplate>
+            </GridView.ItemTemplate>
         </GridView>
-    </StackPanel>
+    </ScrollViewer>
 </Page>
