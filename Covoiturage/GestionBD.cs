@@ -106,6 +106,7 @@ namespace Covoiturage
 
         public ObservableCollection<Ville> GetVille()
         {
+            liste_ville.Clear();
             try
             {
                 MySqlCommand commande = new MySqlCommand("p_selectAll_ville");
@@ -117,7 +118,7 @@ namespace Covoiturage
                 {
                     liste_ville.Add(new Ville()
                     {
-                        Villes = r.GetString(0),
+                        Villes = r.GetString(1),
 
                     });
                 }
@@ -162,6 +163,72 @@ namespace Covoiturage
                 }
             }
             return "";
+        }
+
+        public void getVoiture(ComboBox cmb)
+        {
+
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_select_type_voiture");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //Select
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+
+                    cmb.Items.Add(r.GetString(0));
+
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public void getVilleAjout(ComboBox cmb)
+        {
+
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_selectAll_ville");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //Select
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+
+                    cmb.Items.Add(r.GetString(1));
+
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
         }
 
         public int verificationText(TextBox box, TextBlock erreur)

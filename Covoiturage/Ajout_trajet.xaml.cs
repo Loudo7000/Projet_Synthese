@@ -29,6 +29,10 @@ namespace Covoiturage
         public Ajout_trajet()
         {
             this.InitializeComponent();
+            dateDepart.MinYear = DateTimeOffset.Now;
+            GestionBD.getInstance().getVoiture(voiture);
+            GestionBD.getInstance().getVilleAjout(villeDepart);
+            GestionBD.getInstance().getVilleAjout(villeArrivee);
         }
     }
 }

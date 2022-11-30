@@ -11,7 +11,22 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBox x:Name="cahuffeur" Header="Nom du chauffeur" Width="300px"/>
+        <TextBlock x:Name="erreurChauffeur" Foreground="Red"  Visibility="Collapsed"/>
 
-    </Grid>
+        <ComboBox x:Name="voiture" Header="Type de voiture" Width="300px" Margin="0,10,0,0" />
+        <TextBlock x:Name="erreurVoiture" Foreground="Red"  Visibility="Collapsed"/>
+
+        <ComboBox x:Name="villeDepart" Header="Ville de depart" Width="300px" Margin="0,10,0,0"/>
+        <TextBlock x:Name="erreurVdepart" Foreground="Red"  Visibility="Collapsed"/>
+
+        <ComboBox x:Name="villeArrivee" Header="Ville d'arrivee" Width="300px" Margin="0,10,0,0"/>
+        <TextBlock x:Name="erreurVarrivee" Foreground="Red"  Visibility="Collapsed"/>
+
+        <DatePicker x:Name="dateDepart" Header="Date de depart" Width="300px" Margin="0,10,0,0"/>
+        <TextBlock x:Name="erreurDdepart" Foreground="Red"  Text="Selectionnez un Matricule" Visibility="Collapsed"/>
+
+        <Button  x:Name="BtnAddProjet" Content="Ajouter un trajet" Margin="0,20,0,0"  HorizontalAlignment="Center"/>
+    </StackPanel>
 </Page>

@@ -11,20 +11,29 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-        <ListView x:Name="villeListe">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView x:Name="villeListe" IsEnabled="False">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Ville">
-                    <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">
+                    <StackPanel Orientation="Vertical" Padding="0,0,60,0">
                         <TextBlock  Text="{x:Bind Villes}" Margin="5,5,5,10"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel>
-            <TextBox x:Name="ville" Header="Nom de la ville a ajouter"/>
-            <TextBlock x:Name="erreurAjout" Foreground="Red"  Visibility="Collapsed"/>
+
+        <StackPanel Grid.Column="1" Margin="0,0,100,0" Orientation="Horizontal">
+            <StackPanel>
+                <TextBox x:Name="ville" Header="Nom de la ville a ajouter"/>
+                <TextBlock x:Name="erreurAjout" Foreground="Red"  Visibility="Collapsed"/>
+            </StackPanel>
+            <Button x:Name="ajoutVille" Content="Ajouter" Click="ajoutVille_Click" Margin="20,28,0,0" VerticalAlignment="Top"/>
         </StackPanel>
-        <Button x:Name="ajoutVille" Content="Ajouter" Click="ajoutVille_Click" Margin="20,0,0,0" VerticalAlignment="Bottom"/>
-    </StackPanel>
+    </Grid>
 </Page>
