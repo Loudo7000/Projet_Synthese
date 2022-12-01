@@ -245,5 +245,35 @@ namespace Covoiturage
                 return 0;
             }
         }
+
+        public int verificationBox(ComboBox box, TextBlock erreur)
+        {
+            if (box.SelectedItem == null)
+            {
+                erreur.Text = "Ce champ est obligatoire";
+                erreur.Visibility = Visibility.Visible;
+                return 1;
+            }
+            else
+            {
+                erreur.Visibility = Visibility.Collapsed;
+                return 0;
+            }
+        }
+
+        public int verificationDate(DatePicker date, TextBlock erreur)
+        {
+            if (date.SelectedDate == null)
+            {
+                erreur.Text = "Ce champ est obligatoire";
+                erreur.Visibility = Visibility.Visible;
+                return 1;
+            }
+            else
+            {
+                erreur.Visibility = Visibility.Collapsed;
+                return 0;
+            }
+        }
     }
 }
