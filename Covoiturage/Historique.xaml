@@ -11,19 +11,30 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <GridView x:Name="histoListe" SelectionChanged="trajetListe_SelectionChanged">
-        <GridView.ItemTemplate>
-            <DataTemplate x:DataType="local:Trajets">
-                <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Id du trajet :" Margin="5,5,5,10"/>
-                        <TextBlock Text="{x:Bind Id}" Margin="5,5,5,10"/>
+    <ScrollViewer>
+        <GridView x:Name="histoListe">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:Trajets">
+                    <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Type de voiture :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Voiture}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ville de départ :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Ville_depart}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Date de départ :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ville d'arrivée :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Date_arrivee}" Margin="5,5,5,10"/>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Date de départ :" Margin="5,5,5,10"/>
-                        <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
-                    </StackPanel>
-            </DataTemplate>
-        </GridView.ItemTemplate>
-    </GridView>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </ScrollViewer>
 </Page>

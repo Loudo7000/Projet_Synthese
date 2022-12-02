@@ -31,10 +31,5 @@ namespace Covoiturage
             this.InitializeComponent();
             histoListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
         }
-
-        private void trajetListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
