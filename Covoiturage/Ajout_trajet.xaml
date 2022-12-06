@@ -21,7 +21,9 @@
         <ComboBox x:Name="villeDepart" Header="Ville de depart" Width="300px" Margin="0,10,0,0"/>
         <TextBlock x:Name="errVdepart" Foreground="Red"  Visibility="Collapsed"/>
 
-        <ComboBox x:Name="villeArret" Header="Ville d'arret (si presente)" Width="300px" Margin="0,10,0,0"/>
+        <ComboBox x:Name="villeArret" Header="Ville d'arret (si presente)" Width="300px" Margin="0,10,0,0" SelectedIndex="0">
+            <x:String>Pas d'arret</x:String>
+        </ComboBox>
         <TextBlock x:Name="errVarret" Foreground="Red"  Visibility="Collapsed"/>
 
         <ComboBox x:Name="villeArrivee" Header="Ville d'arrivee" Width="300px" Margin="0,10,0,0"/>

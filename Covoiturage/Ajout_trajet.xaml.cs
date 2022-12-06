@@ -47,22 +47,16 @@ namespace Covoiturage
             valide += GestionBD.getInstance().verificationBox(villeArrivee, errVarrivee);
             valide += GestionBD.getInstance().verificationDate(dateDepart, errDdepart);
 
-            if (Regex.IsMatch(chauffeur.Text, @"\d"))
-            {
-                valide++;
-                errChauffeur.Text = "Chiffres interdit dans ce champ";
-                errChauffeur.Visibility = Visibility.Visible;
-            }
 
-            if(villeArret.SelectedIndex != -1)
+            if(villeArret.SelectedIndex != 0)
             {
-                if(villeArret.SelectedIndex == villeDepart.SelectedIndex)
+                if(villeArret.SelectedItem.ToString() == villeDepart.SelectedItem.ToString())
                 {
                     valide++;
                     errVarret.Text = "La ville d'arrêt ne peut pas être la ville de départ";
                     errVarret.Visibility = Visibility.Visible;
                 }
-                else if(villeArret.SelectedIndex == villeArrivee.SelectedIndex)
+                else if(villeArret.SelectedItem.ToString() == villeArrivee.SelectedItem.ToString())
                 {
                     valide++;
                     errVarret.Text = "La ville d'arrêt ne peut pas être la ville d'arrivée";
@@ -71,10 +65,14 @@ namespace Covoiturage
                 else
                     errVarret.Visibility = Visibility.Collapsed;
             }
+            else
+                errVarret.Visibility = Visibility.Collapsed;
 
             if (valide == 0)
             {
-
+                GestionBD.getInstance().AjoutTrajet(Convert.ToInt32(chauffeur.Text), voiture.SelectedItem.ToString(),
+                    villeDepart.SelectedItem.ToString(), villeArrivee.SelectedItem.ToString(), villeArret.SelectedItem.ToString(), dateDepart.Date.Date);
+                this.Frame.Navigate(typeof(Ajout_trajet));
             }
         }
     }

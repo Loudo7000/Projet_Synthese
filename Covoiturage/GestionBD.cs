@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Animation;
 using Windows.Storage.AccessCache;
+using Org.BouncyCastle.Asn1.Cms;
 
 namespace Covoiturage
 {
@@ -56,10 +57,56 @@ namespace Covoiturage
                         Id = r.GetInt32(0),
                         Chauffeur = r.GetString(1),
                         Voiture = r.GetString(2),
-                        Nb_places = r.GetInt32(3),
-                        Date_depart = r.GetString(4),
+                        Date_depart = r.GetString(3),
+                        Place_depart = r.GetInt32(4),
                         Ville_depart = r.GetString(5),
-                        Date_arrivee = r.GetString(6),
+                        Ville_arret = r.GetString(7),
+                        Ville_arrivee = r.GetString(8),
+                    });
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+
+            return liste_trajet;
+        }
+
+        public ObservableCollection<Trajets> GetListeinfo()
+        {
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_affiche_trajet");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    liste_trajet.Add(new Trajets()
+                    {
+                        Id = r.GetInt32(0),
+                        Chauffeur = r.GetString(1),
+                        Voiture = r.GetString(2),
+                        Date_depart = r.GetString(3),
+                        Place_depart = r.GetInt32(4),
+                        Ville_depart = r.GetString(5),
+                        //Place_arret = r.GetInt32(6),
+                        Ville_arret = r.GetString(7),
+                        Ville_arrivee = r.GetString(8),
+                        Nb_personne = r.GetInt32(9),
+                        Rev_brut = r.GetInt32(10),
+                        Rev_societe = r.GetInt32(11),
+                        Id_chauffeur = r.GetInt32(12),
                     });
 
                 }
@@ -163,6 +210,34 @@ namespace Covoiturage
                 }
             }
             return "";
+        }
+
+        public void AjoutTrajet(int id, String type, String depart, String arrivee, String arret, DateTime date)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_ajout_trajet");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@date", date);
+                commande.Parameters.AddWithValue("@voiture", type);
+                commande.Parameters.AddWithValue("@villeDepart", depart);
+                commande.Parameters.AddWithValue("@villeArret", arret);
+                commande.Parameters.AddWithValue("@villeFinale", arrivee);
+                commande.Parameters.AddWithValue("@usager", id);
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
         }
 
         public void getVoiture(ComboBox cmb)

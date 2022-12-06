@@ -23,7 +23,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Nombre de place :" Margin="5,5,5,10"/>
-                            <TextBlock Text="{x:Bind Nb_places}" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Place_depart}" Margin="5,5,5,10"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Ville de départ :" Margin="5,5,5,10"/>
@@ -32,10 +32,6 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Date de départ :" Margin="5,5,5,10"/>
                             <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Ville d'arrivée :" Margin="5,5,5,10"/>
-                            <TextBlock Text="{x:Bind Date_arrivee}" Margin="5,5,5,10"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
