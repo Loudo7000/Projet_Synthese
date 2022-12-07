@@ -28,5 +28,11 @@ namespace Covoiturage
             this.InitializeComponent();
             trajetListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
         }
+
+        private void trajetListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Trajets t = trajetListe.SelectedItem as Trajets;
+            
+        }
     }
 }

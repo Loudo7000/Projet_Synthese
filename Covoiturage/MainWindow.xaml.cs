@@ -59,9 +59,6 @@ namespace Covoiturage
             {
                 tblentete.Text = item.Tag.ToString();
                 switch (item.Name.ToString()) {
-                    case "inscrire":
-                        mainFrame.Navigate(typeof(Inscrire));
-                        break;
                     case "TrajetInf":
                         mainFrame.Navigate(typeof(Info_trajet));
                         break;

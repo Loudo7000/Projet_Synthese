@@ -9,13 +9,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <GridView x:Name="trajetListe" IsEnabled="False">
+        <GridView x:Name="trajetListe" IsEnabled="True" SelectionChanged="trajetListe_SelectionChanged">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Trajets">
                     <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Nom du chauffeur :" Margin="5,5,5,10"/>
-                            <TextBlock  Text="{x:Bind Chauffeur}" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Chauffeur}" Margin="5,5,5,10"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Type de voiture :" Margin="5,5,5,10"/>

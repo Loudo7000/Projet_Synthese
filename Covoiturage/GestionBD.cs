@@ -290,6 +290,33 @@ namespace Covoiturage
             }
         }
 
+        public void AjoutInscrit(int id_t, /*int id_u,*/ string ville_d, string ville_a, string ville_stop)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_inscription");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@trajet", id_t);
+                //commande.Parameters.AddWithValue("@usager", id_u);
+                commande.Parameters.AddWithValue("@depart", ville_d);
+                commande.Parameters.AddWithValue("@arrive", ville_a);
+                commande.Parameters.AddWithValue("@arret", ville_stop);
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
         public void getVoiture(ComboBox cmb)
         {
 
@@ -399,6 +426,11 @@ namespace Covoiturage
                 erreur.Visibility = Visibility.Collapsed;
                 return 0;
             }
+        }
+
+        internal void AjoutInscrit(ObservableCollection<Trajets> liste_trajet)
+        {
+            throw new NotImplementedException();
         }
     }
 }

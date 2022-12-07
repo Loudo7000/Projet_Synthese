@@ -26,17 +26,6 @@
             <NavigationViewItem IsSelected="True" Content="Trajet du jour" Tag="trajet" Icon="Map"/>
             <NavigationViewItemSeparator/>
 
-            <!--Passager-->
-            <NavigationViewItemHeader Content="Passager" Margin="0,10,0,0"/>
-
-            <NavigationViewItem Tag="S'inscrire sur un trajet" Name="inscrire">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="&#xE804;" FontFamily="Segoe MDL2 Assets" FontSize="18" Margin="3,0,14,0"/>
-                    <TextBlock Text="S'inscrire sur un trajet" VerticalAlignment="Center"/>
-                </StackPanel>
-            </NavigationViewItem>
-            <NavigationViewItemSeparator/>
-
             <!--Chauffeur-->
             <NavigationViewItemHeader Content="Chauffeur" Margin="0,10,0,0"/>
 
@@ -71,7 +60,7 @@
         </NavigationView.MenuItems>
         <NavigationView.PaneFooter >
             <StackPanel>
-                <NavigationViewItem Name="iDeconnexion" Content="Déconnexion" Icon="Switch" Tapped="iDeconnexion_Tapped" Visibility="Visible"/>
+                <NavigationViewItem Name="iDeconnexion" Content="Déconnexion" Icon="Switch" Tapped="iDeconnexion_Tapped" Visibility="Collapsed"/>
                 <NavigationViewItem Name="iConnexion" Content="Connexion" Icon="Account" Tapped="iConnexion_Tapped" Visibility="Visible"/>
 
 
