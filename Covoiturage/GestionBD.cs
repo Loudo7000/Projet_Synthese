@@ -60,8 +60,13 @@ namespace Covoiturage
                         Date_depart = r.GetString(3),
                         Place_depart = r.GetInt32(4),
                         Ville_depart = r.GetString(5),
+                        Place_arret = r.GetInt32(6),
                         Ville_arret = r.GetString(7),
                         Ville_arrivee = r.GetString(8),
+                        Nb_personne = r.GetInt32(9),
+                        Rev_brut = r.GetInt32(10),
+                        Rev_societe = r.GetInt32(11),
+                        Id_chauffeur = r.GetInt32(13),
                     });
 
                 }
@@ -78,7 +83,7 @@ namespace Covoiturage
             return liste_trajet;
         }
 
-        public ObservableCollection<Trajets> GetListeinfo()
+        public ObservableCollection<Trajets> GetListehisto()
         {
             liste_trajet.Clear();
 
@@ -95,18 +100,63 @@ namespace Covoiturage
                     liste_trajet.Add(new Trajets()
                     {
                         Id = r.GetInt32(0),
-                        Chauffeur = r.GetString(1),
-                        Voiture = r.GetString(2),
                         Date_depart = r.GetString(3),
                         Place_depart = r.GetInt32(4),
                         Ville_depart = r.GetString(5),
-                        //Place_arret = r.GetInt32(6),
                         Ville_arret = r.GetString(7),
                         Ville_arrivee = r.GetString(8),
                         Nb_personne = r.GetInt32(9),
                         Rev_brut = r.GetInt32(10),
                         Rev_societe = r.GetInt32(11),
-                        Id_chauffeur = r.GetInt32(12),
+                    });
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+
+            return liste_trajet;
+        }
+
+
+        public ObservableCollection<Trajets> GetListeDateinfo(DateTime dateA, DateTime dateB)
+        {
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_affiche_date_info");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@dateA", dateA);
+                commande.Parameters.AddWithValue("@dateB", dateB);
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    liste_trajet.Add(new Trajets()
+                    {
+                        Id = r.GetInt32(0),
+                        Chauffeur = r.GetString(1),
+                        Voiture = r.GetString(2),
+                        Date_depart = r.GetString(3),
+                        Place_depart = r.GetInt32(4),
+                        Ville_depart = r.GetString(5),
+                        Place_arret = r.GetInt32(6),
+                        Ville_arret = r.GetString(7),
+                        Ville_arrivee = r.GetString(8),
+                        Nb_personne = r.GetInt32(9),
+                        Rev_brut = r.GetInt32(10),
+                        Rev_societe = r.GetInt32(11),
+                        Id_chauffeur = r.GetInt32(13),
                     });
 
                 }

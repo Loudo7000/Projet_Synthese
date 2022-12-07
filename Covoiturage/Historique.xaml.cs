@@ -29,7 +29,7 @@ namespace Covoiturage
         public Historique()
         {
             this.InitializeComponent();
-            histoListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
+            histoListe.ItemsSource = GestionBD.getInstance().GetListehisto();
         }
     }
 }

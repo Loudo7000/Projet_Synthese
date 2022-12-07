@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <GridView x:Name="trajetListe">
+        <GridView x:Name="trajetListe" IsEnabled="False">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Trajets">
                     <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">

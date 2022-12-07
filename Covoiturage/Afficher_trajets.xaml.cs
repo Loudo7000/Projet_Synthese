@@ -27,7 +27,6 @@ namespace Covoiturage
         {
             this.InitializeComponent();
             trajetListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
-            
         }
     }
 }

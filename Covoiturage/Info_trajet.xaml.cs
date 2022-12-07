@@ -29,7 +29,13 @@ namespace Covoiturage
         public Info_trajet()
         {
             this.InitializeComponent();
-            infoListe.ItemsSource = GestionBD.getInstance().GetListeinfo();
+            infoListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
         }
+
+        private void btnDat_Click(object sender, RoutedEventArgs e)
+        {
+            infoListe.ItemsSource = GestionBD.getInstance().GetListeDateinfo(datDeb.Date.Date, datFin.Date.Date);
+        }
+
     }
 }
