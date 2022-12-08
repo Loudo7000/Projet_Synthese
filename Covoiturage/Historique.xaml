@@ -12,7 +12,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <GridView x:Name="histoListe">
+        <GridView x:Name="histoListe" SelectionChanged="histoListe_SelectionChanged">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Trajets">
                     <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">

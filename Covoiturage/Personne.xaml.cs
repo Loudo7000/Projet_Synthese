@@ -24,17 +24,11 @@ namespace Covoiturage
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Historique : Page
+    public sealed partial class Personne : Page
     {
-        public Historique()
+        public Personne()
         {
             this.InitializeComponent();
-            histoListe.ItemsSource = GestionBD.getInstance().GetListehisto();
-        }
-
-        private void histoListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -17,6 +17,7 @@
     <None Remove="Ajout_ville.xaml" />
     <None Remove="Historique.xaml" />
     <None Remove="Info_trajet.xaml" />
+    <None Remove="Personne.xaml" />
     <None Remove="Revenue.xaml" />
   </ItemGroup>
 
@@ -44,6 +45,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Personne.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Revenue.xaml">

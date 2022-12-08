@@ -48,13 +48,16 @@ namespace Covoiturage
 
             if (valide == 0)
             {
-                if(GestionBD.getInstance().AjoutVille(ville.Text) != "")
+                if (GestionBD.getInstance().AjoutVille(ville.Text) != "")
                 {
                     erreurAjout.Text = GestionBD.getInstance().AjoutVille(ville.Text);
                     erreurAjout.Visibility = Visibility.Visible;
                 }
                 else
-                this.Frame.Navigate(typeof(Ajout_ville));
+                {
+                    this.Frame.Navigate(typeof(Ajout_ville));
+                    erreurAjout.Visibility = Visibility.Collapsed;
+                }
             }
         }
     }

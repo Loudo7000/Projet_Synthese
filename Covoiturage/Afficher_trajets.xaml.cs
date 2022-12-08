@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,10 +30,22 @@ namespace Covoiturage
             trajetListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
         }
 
-        private void trajetListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void inscrit_Click(object sender, RoutedEventArgs e)
         {
             Trajets t = trajetListe.SelectedItem as Trajets;
-            
+            if (trajetListe.SelectedItem != null) {
+                switch (choix.SelectedIndex) {
+                    case 0:
+                    GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arrivee);
+                    break;
+                    case 1:
+                    GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arret);
+                    break;
+                    case 2:
+                    GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_arret, t.Ville_arrivee);
+                    break;
+                }
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Covoiturage
         int nb_personne;
         int rev_brut;
         int rev_societe;
+        int rev_chauffeur;
 
         public int Id { get => id; set => id = value; }
         public string Chauffeur { get => chauffeur; set => chauffeur = value; }
@@ -35,5 +36,6 @@ namespace Covoiturage
         public string Ville_arret { get => ville_arret; set => ville_arret = value; }
         public string Ville_arrivee { get => ville_arrivee; set => ville_arrivee = value; }
         public int Id_chauffeur { get => id_chauffeur; set => id_chauffeur = value; }
+        public int Rev_chauffeur { get => rev_chauffeur; set => rev_chauffeur = value; }
     }
 }
