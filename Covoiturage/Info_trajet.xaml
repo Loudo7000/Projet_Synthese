@@ -79,13 +79,13 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Revenu brut :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Rev_brut}" Margin="5,5,5,10"/>
+                                <TextBlock Text="Revenu du chauffeur :" Margin="5,5,5,10"/>
+                                <TextBlock Text="{x:Bind Rev_chauffeur}" Margin="5,5,5,10"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Revenu brut :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Rev_brut}" Margin="5,5,5,10"/>
+                                <TextBlock Text="Revenu de la societe :" Margin="5,5,5,10"/>
+                                <TextBlock Text="{x:Bind Rev_societe}" Margin="5,5,5,10"/>
                             </StackPanel>
 
                         </StackPanel>
