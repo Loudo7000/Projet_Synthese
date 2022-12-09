@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="Covoiturage.Afficher_trajets"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Covoiturage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock x:Name="err" Margin="280,0,0,0" Foreground="Red" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <GridView x:Name="trajetListe" Grid.Column="0" HorizontalAlignment="Left">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Trajets">
+                            <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Nom du chauffeur :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Chauffeur}" Margin="5,5,5,10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Type de voiture :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Voiture}" Margin="5,5,5,10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Nombre de place :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Place_depart}" Margin="5,5,5,10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Ville de départ :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Ville_depart}" Margin="5,5,5,10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Date de départ :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Ville d'arrêt :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Ville_arret}" Margin="5,5,5,10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Ville d'arrivée :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Ville_arrivee}" Margin="5,5,5,10"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+                
+                <StackPanel Grid.Column="1" Margin="0,0,100,0">
+                    <ComboBox x:Name="choix" SelectedIndex="0">
+                        <x:String>Trajet complet</x:String>
+                        <x:String>Ville de départ à l'arrêt</x:String>
+                        <x:String>Ville d'arrêt à l'arrivée</x:String>
+                    </ComboBox>
+                    <Button x:Name="inscrit" Content="S'inscrire" Click="inscrit_Click" Margin="0,10,0,0"/>
+                </StackPanel>
+                
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

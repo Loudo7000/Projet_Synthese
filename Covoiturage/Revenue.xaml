@@ -1,0 +1,59 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
+<!-- Licensed under the MIT License. See LICENSE in the project root for license information. -->
+
+<Page
+    x:Class="Covoiturage.Revenue"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Covoiturage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <GridView Grid.Column="0" x:Name="revliste" HorizontalAlignment="Left" IsEnabled="False">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Trajets">
+                        <StackPanel Margin="25">
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Id du trajet :" Margin="5,5,5,10"/>
+                                <TextBlock Text="{x:Bind Id}" Margin="5,5,5,10"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Revenu brut :" Margin="5,5,5,10"/>
+                                <TextBlock Text="{x:Bind Rev_brut}" Margin="5,5,5,10"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Revenu de la societe:" Margin="5,5,5,10"/>
+                                <TextBlock Text="{x:Bind Rev_societe}" Margin="5,5,5,10"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Revenu du chauffeur :" Margin="5,5,5,10"/>
+                                <TextBlock Text="{x:Bind Rev_chauffeur}" Margin="5,5,5,10"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
+            <StackPanel Grid.Column="1" Margin="0,0,100,0">
+                <DatePicker  x:Name="date" Header="Recherche du revenu par date" Width="300px" Margin="0,10,0,0"/>
+                <TextBlock x:Name="err" Foreground="Red" Visibility="Collapsed"/>
+                <Button x:Name="btnDat" Content="Rechercher" Click="btnDat_Click" Margin="0,10,0,0"/>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

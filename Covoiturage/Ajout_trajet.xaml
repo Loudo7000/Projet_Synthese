@@ -1,0 +1,37 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
+<!-- Licensed under the MIT License. See LICENSE in the project root for license information. -->
+
+<Page
+    x:Class="Covoiturage.Ajout_trajet"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Covoiturage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBox x:Name="chauffeur" Header="Nom du chauffeur" Width="300px"/>
+        <TextBlock x:Name="errChauffeur" Foreground="Red"  Visibility="Collapsed"/>
+
+        <ComboBox x:Name="voiture" Header="Type de voiture" Width="300px" Margin="0,10,0,0" />
+        <TextBlock x:Name="errVoiture" Foreground="Red"  Visibility="Collapsed"/>
+
+        <ComboBox x:Name="villeDepart" Header="Ville de depart" Width="300px" Margin="0,10,0,0"/>
+        <TextBlock x:Name="errVdepart" Foreground="Red"  Visibility="Collapsed"/>
+
+        <ComboBox x:Name="villeArret" Header="Ville d'arret (si presente)" Width="300px" Margin="0,10,0,0" SelectedIndex="0">
+            <x:String>Pas d'arret</x:String>
+        </ComboBox>
+        <TextBlock x:Name="errVarret" Foreground="Red"  Visibility="Collapsed"/>
+
+        <ComboBox x:Name="villeArrivee" Header="Ville d'arrivee" Width="300px" Margin="0,10,0,0"/>
+        <TextBlock x:Name="errVarrivee" Foreground="Red"  Visibility="Collapsed"/>
+
+        <DatePicker x:Name="dateDepart" Header="Date de depart" Width="300px" Margin="0,10,0,0"/>
+        <TextBlock x:Name="errDdepart" Foreground="Red"  Text="Selectionnez un Matricule" Visibility="Collapsed"/>
+
+        <Button x:Name="BtnAddProjet" Content="Ajouter un trajet" Click="BtnAddProjet_Click" Margin="0,20,0,0"  HorizontalAlignment="Center"/>
+    </StackPanel>
+</Page>
