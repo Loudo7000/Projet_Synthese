@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,10 +30,57 @@ namespace Covoiturage
             trajetListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
         }
 
-        private void trajetListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void inscrit_Click(object sender, RoutedEventArgs e)
         {
             Trajets t = trajetListe.SelectedItem as Trajets;
-            
+            if (trajetListe.SelectedItem == null)
+            {
+                err.Text = "Sélectionner un trajet";
+                err.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                err.Visibility = Visibility.Collapsed;
+                switch (choix.SelectedIndex)
+                {
+                    case 0:
+                        if(GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arrivee) != "")
+                        {
+                            err.Text = GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arrivee);
+                            err.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            err.Visibility = Visibility.Collapsed;
+                            this.Frame.Navigate(typeof(Afficher_trajets));
+                        }
+                        break;
+                    case 1:
+                        if(GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arret) != "")
+                        {
+                            err.Text = GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arret);
+                            err.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            err.Visibility = Visibility.Collapsed;
+                            this.Frame.Navigate(typeof(Afficher_trajets));
+                        }
+                        break;
+                    case 2:
+                        if(GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_arret, t.Ville_arrivee) != "")
+                        {
+                            err.Text = GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_arret, t.Ville_arrivee);
+                            err.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            err.Visibility = Visibility.Collapsed;
+                            this.Frame.Navigate(typeof(Afficher_trajets));
+                        }
+                        break;
+                }
+            }
         }
     }
 }

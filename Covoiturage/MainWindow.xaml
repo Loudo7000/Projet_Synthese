@@ -16,8 +16,11 @@
                     SelectionChanged="NavigationView_SelectionChanged"
                     >
 
+
        <NavigationView.Header>
+
             <TextBlock Text="Trajet du jour" x:Name="tblentete" />
+            
         </NavigationView.Header>
 
 
@@ -38,6 +41,8 @@
             </NavigationViewItem>
 
             <!--Admin-->
+
+
 
             <NavigationViewItem x:Name="admin" Visibility="Collapsed" Content="Admin" Tag="default">
                 <NavigationViewItem.MenuItems>
@@ -69,13 +74,14 @@
                 <NavigationViewItem Name="iDeconnexion" Content="Déconnexion" Icon="Switch" Tapped="iDeconnexion_Tapped" Visibility="Collapsed"/>
                 <NavigationViewItem Name="iConnexion" Content="Connexion" Icon="Account" Tapped="iConnexion_Tapped" Visibility="Visible"/>
 
-
             </StackPanel>
 
         </NavigationView.PaneFooter>
 
 
+
         <Frame x:Name="mainFrame"/>
+
 
     </NavigationView>
 </Window>

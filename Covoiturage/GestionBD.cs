@@ -244,6 +244,79 @@ namespace Covoiturage
             return liste_ville;
         }
 
+        public ObservableCollection<Trajets> GetRevenu(DateTime date)
+        {
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_affiche_revenue");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@date", date);
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    liste_trajet.Add(new Trajets()
+                    {
+                        Id = r.GetInt32(0),
+                        Rev_brut = r.GetInt32(1),
+                        Rev_chauffeur = r.GetInt32(2),
+                        Rev_societe = r.GetInt32(3),
+                    });
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+
+            return liste_trajet;
+        }
+
+        public ObservableCollection<Trajets> GetPersonne(int id)
+        {
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_affiche_personne");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@trajet", id);
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    liste_trajet.Add(new Trajets()
+                    {
+                        Personne = r.GetString(1),
+                    });
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+
+            return liste_trajet;
+        }
+
         public String AjoutVille(String nom)
         {
             try
@@ -304,7 +377,7 @@ namespace Covoiturage
             }
         }
 
-        public void AjoutInscrit(int id_t, /*int id_u,*/ string ville_d, string ville_a, string ville_stop)
+        public String AjoutInscrit(int id_t, string ville_d, string ville_a)
         {
             try
             {
@@ -313,10 +386,8 @@ namespace Covoiturage
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
                 commande.Parameters.AddWithValue("@trajet", id_t);
-                //commande.Parameters.AddWithValue("@usager", id_u);
                 commande.Parameters.AddWithValue("@depart", ville_d);
                 commande.Parameters.AddWithValue("@arrive", ville_a);
-                commande.Parameters.AddWithValue("@arret", ville_stop);
 
                 con.Open();
                 commande.Prepare();
@@ -328,7 +399,16 @@ namespace Covoiturage
             {
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
+                switch (ex.Number)
+                {
+                    case 1062:
+                        return "Vous êtes déja inscrit à ce trajet";
+                        break;
+                    default:
+                        throw;
+                }
             }
+            return "";
         }
 
         public void getVoiture(ComboBox cmb)
@@ -396,6 +476,7 @@ namespace Covoiturage
             }
 
         }
+
 
         public Usager getUsager(string email, string mdp)
         {
@@ -493,7 +574,7 @@ namespace Covoiturage
         {
             if (date.SelectedDate == null)
             {
-                erreur.Text = "Ce champ est obligatoire";
+                erreur.Text = "Sélectionner une date";
                 erreur.Visibility = Visibility.Visible;
                 return 1;
             }

@@ -30,5 +30,13 @@ namespace Covoiturage
         {
             this.InitializeComponent();
         }
+
+        private void btnDat_Click(object sender, RoutedEventArgs e)
+        {
+            int valide = 0;
+            valide += GestionBD.getInstance().verificationDate(date, err);
+            if(valide == 0)
+            revliste.ItemsSource = GestionBD.getInstance().GetRevenu(date.Date.Date);
+        }
     }
 }

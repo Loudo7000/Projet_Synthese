@@ -12,7 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Calls.Background;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -24,17 +27,18 @@ namespace Covoiturage
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Historique : Page
+    public sealed partial class Personne : Page
     {
-        public Historique()
+        public Personne()
         {
             this.InitializeComponent();
-            histoListe.ItemsSource = GestionBD.getInstance().GetListehisto();
         }
 
-        private void histoListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.Frame.Navigate(typeof(Personne), histoListe.SelectedItem);
+            Trajets t = (object)e.Parameter as Trajets;
+            persoliste.ItemsSource = GestionBD.getInstance().GetPersonne(t.Id);
         }
     }
 }

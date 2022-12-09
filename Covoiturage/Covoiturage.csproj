@@ -18,6 +18,7 @@
     <None Remove="Auth.xaml" />
     <None Remove="Historique.xaml" />
     <None Remove="Info_trajet.xaml" />
+    <None Remove="Personne.xaml" />
     <None Remove="Revenue.xaml" />
   </ItemGroup>
 
@@ -47,7 +48,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+
     <Page Update="Auth.xaml">
+
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
