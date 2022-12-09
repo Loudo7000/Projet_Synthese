@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,37 +25,65 @@ namespace Covoiturage
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        string nom = GestionBD.U.Nom;
+
         public MainWindow()
         {
             this.InitializeComponent();
+            mainFrame.Navigate(typeof(Afficher_trajets));
+            
         }
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = (NavigationViewItem)args.SelectedItem;
-            tblentete.Text = item.Content.ToString();
-
-            //switch (item.Content.ToString())
-            //{
-            //    case "Clients":
-            //        mainframe.Navigate(typeof());
-            //        break;
-            //    case "Agenda":
-            //        mainframe.Navigate(typeof());
-            //        break;
-            //    default:
-            //        break;
-            //}
+            if (item.Name.ToString() == "")
+            {
+                tblentete.Text = item.Content.ToString();
+                switch (item.Tag.ToString())
+                {
+                    case "trajet":
+                        mainFrame.Navigate(typeof(Afficher_trajets));
+                        break;
+                    case "Trajetch":
+                        mainFrame.Navigate(typeof(Ajout_trajet));
+                        break;
+                    case "Histo":
+                        mainFrame.Navigate(typeof(Historique));
+                        break;
+                    case "ville":
+                        mainFrame.Navigate(typeof(Ajout_ville));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                tblentete.Text = item.Tag.ToString();
+                switch (item.Name.ToString()) {
+                    case "TrajetInf":
+                        mainFrame.Navigate(typeof(Info_trajet));
+                        break;
+                    case "revenue":
+                        mainFrame.Navigate(typeof(Revenue));
+                        break;
+                    default:
+                        break;
+                }
+            }
+           
         }
 
         private void iDeconnexion_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            tblentete.Text = "Déconnexion";
         }
 
         private void iConnexion_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            tblentete.Text = "Connexion";
+            mainFrame.Navigate(typeof(Auth));
         }
     }
 }
