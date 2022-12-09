@@ -7,9 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView Background="DarkBlue" 
+    <NavigationView x:Name="Nav"
+                    Background="DarkBlue" 
                     PaneDisplayMode="Left" 
-                    PaneTitle="Invité" 
+                    PaneTitle="{}" 
                     IsBackEnabled="True" 
                     IsSettingsVisible="False"
                     SelectionChanged="NavigationView_SelectionChanged"

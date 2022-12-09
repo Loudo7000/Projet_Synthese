@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="Covoiturage.Auth"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Covoiturage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBox x:Name="email" Header="Adresse Courriel" Width="300px"/>
+        <TextBlock x:Name="erremail" Foreground="Red"  Visibility="Collapsed"/>
+
+        <TextBox x:Name="mdp" Header="Mot de Passe" Width="300px" Margin="0,10,0,0" />
+        <TextBlock x:Name="errmdp" Foreground="Red"  Visibility="Collapsed"/>
+
+        <Button x:Name="BtnAuth" Content="Se connecter" Click="BtnAuth_Click" Margin="0,20,0,0"  HorizontalAlignment="Center"/>
+    </StackPanel>
+</Page>

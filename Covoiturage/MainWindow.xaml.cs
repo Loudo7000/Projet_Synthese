@@ -25,10 +25,13 @@ namespace Covoiturage
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        string nom = GestionBD.U.Nom;
+
         public MainWindow()
         {
             this.InitializeComponent();
             mainFrame.Navigate(typeof(Afficher_trajets));
+            
         }
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -74,12 +77,13 @@ namespace Covoiturage
 
         private void iDeconnexion_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            tblentete.Text = "Déconnexion";
         }
 
         private void iConnexion_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            tblentete.Text = "Connexion";
+            mainFrame.Navigate(typeof(Auth));
         }
     }
 }

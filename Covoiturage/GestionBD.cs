@@ -20,6 +20,9 @@ namespace Covoiturage
         ObservableCollection<Arrêt> liste_ville_arret;
         ObservableCollection<Ville> liste_ville;
         static GestionBD gestionBD = null;
+        static Usager u;
+
+        internal static Usager U { get => u; set => u = value; }
 
         public GestionBD()
         {
@@ -382,6 +385,49 @@ namespace Covoiturage
             }
 
         }
+
+        public Usager getUsager(string email, string mdp)
+        {
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_select_user");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@mail", email);
+                commande.Parameters.AddWithValue("@pass", mdp);
+
+                con.Open();
+                commande.Prepare();
+                MySqlDataReader r = commande.ExecuteReader();
+                r.Read();
+                u = new Usager()
+                {
+                    Id = r.GetInt32(0),
+                    Nom = r.GetString(1),
+                    Prenom = r.GetString(2),
+                    Adresse = r.GetString(3),
+                    NumTel = r.GetString(4),
+                    Email = r.GetString(5),
+                    Mdp = r.GetString(6),
+                    TypeUsager = r.GetString(7),
+
+                };
+                r.Close();
+                con.Close();
+                return u;
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+                return u;
+            }
+
+        }
+
+
 
         public int verificationText(TextBox box, TextBlock erreur)
         {
