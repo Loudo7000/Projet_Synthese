@@ -10,14 +10,15 @@ namespace Covoiturage
     {
         int id;
         int id_chauffeur;
-        String chauffeur;
-        String voiture;
+        string chauffeur;
+        string voiture;
         int place_depart;
-        String ville_depart;
+        string ville_depart;
         int place_arret;
-        String ville_arret;
-        String date_depart;
-        String ville_arrivee;
+        string ville_arret;
+        string date_depart;
+        string ville_arrivee;
+        string personne;
         int nb_personne;
         int rev_brut;
         int rev_societe;
@@ -37,5 +38,6 @@ namespace Covoiturage
         public string Ville_arrivee { get => ville_arrivee; set => ville_arrivee = value; }
         public int Id_chauffeur { get => id_chauffeur; set => id_chauffeur = value; }
         public int Rev_chauffeur { get => rev_chauffeur; set => rev_chauffeur = value; }
+        public string Personne { get => personne; set => personne = value; }
     }
 }

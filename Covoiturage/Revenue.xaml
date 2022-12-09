@@ -24,6 +24,11 @@
                         <StackPanel Margin="25">
 
                             <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Id du trajet :" Margin="5,5,5,10"/>
+                                <TextBlock Text="{x:Bind Id}" Margin="5,5,5,10"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Revenu brut :" Margin="5,5,5,10"/>
                                 <TextBlock Text="{x:Bind Rev_brut}" Margin="5,5,5,10"/>
                             </StackPanel>
@@ -33,10 +38,10 @@
                                 <TextBlock Text="{x:Bind Rev_societe}" Margin="5,5,5,10"/>
                             </StackPanel>
 
-                            <!--<StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Revenu du chauffeur :" Margin="5,5,5,10"/>
                                 <TextBlock Text="{x:Bind Rev_chauffeur}" Margin="5,5,5,10"/>
-                            </StackPanel>-->
+                            </StackPanel>
 
                         </StackPanel>
                     </DataTemplate>
@@ -45,6 +50,7 @@
 
             <StackPanel Grid.Column="1" Margin="0,0,100,0">
                 <DatePicker  x:Name="date" Header="Recherche du revenu par date" Width="300px" Margin="0,10,0,0"/>
+                <TextBlock x:Name="err" Foreground="Red" Visibility="Collapsed"/>
                 <Button x:Name="btnDat" Content="Rechercher" Click="btnDat_Click" Margin="0,10,0,0"/>
             </StackPanel>
 

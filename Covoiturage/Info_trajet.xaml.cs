@@ -34,6 +34,12 @@ namespace Covoiturage
 
         private void btnDat_Click(object sender, RoutedEventArgs e)
         {
+            int valide = 0;
+
+            valide += GestionBD.getInstance().verificationDate(datDeb, errDatDeb);
+            valide += GestionBD.getInstance().verificationDate(datFin, errDatFin);
+
+            if(valide == 0)
             infoListe.ItemsSource = GestionBD.getInstance().GetListeDateinfo(datDeb.Date.Date, datFin.Date.Date);
         }
 

@@ -34,7 +34,7 @@ namespace Covoiturage
 
         private void histoListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(Personne), histoListe.SelectedItem);
         }
     }
 }

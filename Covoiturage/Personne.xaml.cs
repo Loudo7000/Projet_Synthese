@@ -12,7 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Calls.Background;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -29,6 +32,13 @@ namespace Covoiturage
         public Personne()
         {
             this.InitializeComponent();
+        }
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Trajets t = (object)e.Parameter as Trajets;
+            persoliste.ItemsSource = GestionBD.getInstance().GetPersonne(t.Id);
         }
     }
 }

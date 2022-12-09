@@ -248,8 +248,45 @@ namespace Covoiturage
                 {
                     liste_trajet.Add(new Trajets()
                     {
-                        Rev_brut = r.GetInt32(10),
-                        Rev_societe = r.GetInt32(11),
+                        Id = r.GetInt32(0),
+                        Rev_brut = r.GetInt32(1),
+                        Rev_chauffeur = r.GetInt32(2),
+                        Rev_societe = r.GetInt32(3),
+                    });
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+
+            return liste_trajet;
+        }
+
+        public ObservableCollection<Trajets> GetPersonne(int id)
+        {
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_affiche_personne");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@trajet", id);
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    liste_trajet.Add(new Trajets()
+                    {
+                        Personne = r.GetString(1),
                     });
 
                 }
@@ -461,7 +498,7 @@ namespace Covoiturage
         {
             if (date.SelectedDate == null)
             {
-                erreur.Text = "Ce champ est obligatoire";
+                erreur.Text = "Sélectionner une date";
                 erreur.Visibility = Visibility.Visible;
                 return 1;
             }
