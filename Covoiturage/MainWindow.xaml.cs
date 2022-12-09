@@ -34,6 +34,7 @@ namespace Covoiturage
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = (NavigationViewItem)args.SelectedItem;
+
             if (item.Name.ToString() == "")
             {
                 tblentete.Text = item.Content.ToString();

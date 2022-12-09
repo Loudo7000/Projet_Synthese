@@ -16,7 +16,9 @@
                     >
 
         <NavigationView.Header>
+
             <TextBlock Text="Trajet du jour" x:Name="tblentete" />
+            
         </NavigationView.Header>
 
 
@@ -40,6 +42,7 @@
             <NavigationViewItem Content="Ajouts d'une Ville" Tag="ville" Icon="Add"/>
 
             <NavigationViewItem Tag="Info Trajet" Name="TrajetInf">
+
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xF142;" FontFamily="Segoe MDL2 Assets" FontSize="26" Margin="0,0,07,0"/>
                     <TextBlock Text="Info Trajet" VerticalAlignment="Center"/>
@@ -63,13 +66,14 @@
                 <NavigationViewItem Name="iDeconnexion" Content="Déconnexion" Icon="Switch" Tapped="iDeconnexion_Tapped" Visibility="Collapsed"/>
                 <NavigationViewItem Name="iConnexion" Content="Connexion" Icon="Account" Tapped="iConnexion_Tapped" Visibility="Visible"/>
 
-
             </StackPanel>
 
         </NavigationView.PaneFooter>
 
 
+
         <Frame x:Name="mainFrame"/>
+
 
     </NavigationView>
 </Window>
