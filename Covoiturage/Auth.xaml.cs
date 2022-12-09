@@ -30,9 +30,9 @@ namespace Covoiturage
 
         private void BtnAuth_Click(object sender, RoutedEventArgs e)
         {
-            GestionBD.getInstance().getUsager(email.Text, mdp.Text);
+            GestionBD.getInstance().getUsager(email.Text, mdp.Password);
             BtnAuth.Content = GestionBD.U.Email;
-
+            this.Frame.Navigate(typeof(Historique));
         }
     }
 }

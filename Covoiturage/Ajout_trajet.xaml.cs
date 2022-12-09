@@ -41,7 +41,6 @@ namespace Covoiturage
         {
             int valide = 0;
 
-            valide += GestionBD.getInstance().verificationText(chauffeur, errChauffeur);
             valide += GestionBD.getInstance().verificationBox(voiture, errVoiture);
             valide += GestionBD.getInstance().verificationBox(villeDepart, errVdepart);
             valide += GestionBD.getInstance().verificationBox(villeArrivee, errVarrivee);
@@ -70,7 +69,7 @@ namespace Covoiturage
 
             if (valide == 0)
             {
-                GestionBD.getInstance().AjoutTrajet(Convert.ToInt32(chauffeur.Text), voiture.SelectedItem.ToString(),
+                GestionBD.getInstance().AjoutTrajet(voiture.SelectedItem.ToString(),
                     villeDepart.SelectedItem.ToString(), villeArrivee.SelectedItem.ToString(), villeArret.SelectedItem.ToString(), dateDepart.Date.Date);
                 this.Frame.Navigate(typeof(Ajout_trajet));
             }

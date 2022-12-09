@@ -349,7 +349,7 @@ namespace Covoiturage
             return "";
         }
 
-        public void AjoutTrajet(int id, String type, String depart, String arrivee, String arret, DateTime date)
+        public void AjoutTrajet(String type, String depart, String arrivee, String arret, DateTime date)
         {
             try
             {
@@ -362,7 +362,7 @@ namespace Covoiturage
                 commande.Parameters.AddWithValue("@villeDepart", depart);
                 commande.Parameters.AddWithValue("@villeArret", arret);
                 commande.Parameters.AddWithValue("@villeFinale", arrivee);
-                commande.Parameters.AddWithValue("@usager", id);
+                commande.Parameters.AddWithValue("@usager", u.Id);
 
                 con.Open();
                 commande.Prepare();

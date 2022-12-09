@@ -12,7 +12,7 @@
         <TextBox x:Name="email" Header="Adresse Courriel" Width="300px"/>
         <TextBlock x:Name="erremail" Foreground="Red"  Visibility="Collapsed"/>
 
-        <TextBox x:Name="mdp" Header="Mot de Passe" Width="300px" Margin="0,10,0,0" />
+        <PasswordBox x:Name="mdp" Header="Mot de Passe" Width="300px" Margin="0,10,0,0" />
         <TextBlock x:Name="errmdp" Foreground="Red"  Visibility="Collapsed"/>
 
         <Button x:Name="BtnAuth" Content="Se connecter" Click="BtnAuth_Click" Margin="0,20,0,0"  HorizontalAlignment="Center"/>

@@ -12,8 +12,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBox x:Name="chauffeur" Header="Nom du chauffeur" Width="300px"/>
-        <TextBlock x:Name="errChauffeur" Foreground="Red"  Visibility="Collapsed"/>
 
         <ComboBox x:Name="voiture" Header="Type de voiture" Width="300px" Margin="0,10,0,0" />
         <TextBlock x:Name="errVoiture" Foreground="Red"  Visibility="Collapsed"/>
