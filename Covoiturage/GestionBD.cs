@@ -20,6 +20,20 @@ namespace Covoiturage
         ObservableCollection<Arrêt> liste_ville_arret;
         ObservableCollection<Ville> liste_ville;
         static GestionBD gestionBD = null;
+        static Usager u;
+
+        NavigationView nav;
+        NavigationViewItem navC;
+        NavigationViewItem navA;
+        NavigationViewItem navCon;
+        NavigationViewItem navDec;
+
+        internal static Usager U { get => u; set => u = value; }
+        public NavigationView Nav { get => nav; set => nav = value; }
+        public NavigationViewItem NavC { get => navC; set => navC = value; }
+        public NavigationViewItem NavA { get => navA; set => navA = value; }
+        public NavigationViewItem NavCon { get => navCon; set => navCon = value; }
+        public NavigationViewItem NavDec { get => navDec; set => navDec = value; }
 
         public GestionBD()
         {
@@ -464,7 +478,69 @@ namespace Covoiturage
         }
 
 
-        public int verificationText(TextBox box, TextBlock erreur)
+        public Usager getUsager(string email, string mdp)
+        {
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_select_user");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@mail", email);
+                commande.Parameters.AddWithValue("@pass", mdp);
+
+                con.Open();
+                commande.Prepare();
+                MySqlDataReader r = commande.ExecuteReader();
+                r.Read();
+                u = new Usager()
+                {
+                    Id = r.GetInt32(0),
+                    Nom = r.GetString(1),
+                    Prenom = r.GetString(2),
+                    Adresse = r.GetString(3),
+                    NumTel = r.GetString(4),
+                    Email = r.GetString(5),
+                    Mdp = r.GetString(6),
+                    TypeUsager = r.GetString(7),
+
+                };
+                nav.PaneTitle = u.Prenom + " " +u.Nom;
+                switch (u.TypeUsager)
+                {
+                    case "chauffeur": navC.Visibility=Visibility.Visible ; break;
+                    case "admin": navA.Visibility=Visibility.Visible ; break;
+                }
+                navCon.Visibility = Visibility.Collapsed;
+                navDec.Visibility = Visibility.Visible;
+                r.Close();
+                con.Close();
+                return u;
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+                return u;
+            }
+
+        }
+
+        public void decon()
+        {
+            nav.PaneTitle = "Invité";
+            switch (u.TypeUsager)
+            {
+                case "chauffeur": navC.Visibility = Visibility.Collapsed; break;
+                case "admin": navA.Visibility = Visibility.Collapsed; break;
+            }
+            navCon.Visibility = Visibility.Visible;
+            navDec.Visibility = Visibility.Collapsed;
+        }
+
+
+            public int verificationText(TextBox box, TextBlock erreur)
         {
             if (box.Text.Length <= 0)
             {

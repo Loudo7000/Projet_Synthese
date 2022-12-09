@@ -25,10 +25,17 @@ namespace Covoiturage
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             this.InitializeComponent();
+            GestionBD.getInstance().Nav = nav;
+            GestionBD.getInstance().NavC = chauffeur;
+            GestionBD.getInstance().NavA = admin;
+            GestionBD.getInstance().NavCon = iConnexion;
+            GestionBD.getInstance().NavDec = iDeconnexion;
             mainFrame.Navigate(typeof(Afficher_trajets));
+            
         }
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -58,6 +65,7 @@ namespace Covoiturage
             }
             else
             {
+                if(item.Tag.ToString()!="default")
                 tblentete.Text = item.Tag.ToString();
                 switch (item.Name.ToString()) {
                     case "TrajetInf":
@@ -75,12 +83,14 @@ namespace Covoiturage
 
         private void iDeconnexion_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            GestionBD.getInstance().decon();
+            mainFrame.Navigate(typeof(Afficher_trajets));
         }
 
         private void iConnexion_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            tblentete.Text = "Connexion";
+            mainFrame.Navigate(typeof(Auth));
         }
     }
 }
