@@ -22,7 +22,18 @@ namespace Covoiturage
         static GestionBD gestionBD = null;
         static Usager u;
 
+        NavigationView nav;
+        NavigationViewItem navC;
+        NavigationViewItem navA;
+        NavigationViewItem navCon;
+        NavigationViewItem navDec;
+
         internal static Usager U { get => u; set => u = value; }
+        public NavigationView Nav { get => nav; set => nav = value; }
+        public NavigationViewItem NavC { get => navC; set => navC = value; }
+        public NavigationViewItem NavA { get => navA; set => navA = value; }
+        public NavigationViewItem NavCon { get => navCon; set => navCon = value; }
+        public NavigationViewItem NavDec { get => navDec; set => navDec = value; }
 
         public GestionBD()
         {
@@ -414,6 +425,14 @@ namespace Covoiturage
                     TypeUsager = r.GetString(7),
 
                 };
+                nav.PaneTitle = u.Prenom + " " +u.Nom;
+                switch (u.TypeUsager)
+                {
+                    case "chauffeur": navC.Visibility=Visibility.Visible ; break;
+                    case "admin": navA.Visibility=Visibility.Visible ; break;
+                }
+                navCon.Visibility = Visibility.Collapsed;
+                navDec.Visibility = Visibility.Visible;
                 r.Close();
                 con.Close();
                 return u;
@@ -427,9 +446,20 @@ namespace Covoiturage
 
         }
 
+        public void decon()
+        {
+            nav.PaneTitle = "Invité";
+            switch (u.TypeUsager)
+            {
+                case "chauffeur": navC.Visibility = Visibility.Collapsed; break;
+                case "admin": navA.Visibility = Visibility.Collapsed; break;
+            }
+            navCon.Visibility = Visibility.Visible;
+            navDec.Visibility = Visibility.Collapsed;
+        }
 
 
-        public int verificationText(TextBox box, TextBlock erreur)
+            public int verificationText(TextBox box, TextBlock erreur)
         {
             if (box.Text.Length <= 0)
             {
