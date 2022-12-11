@@ -28,7 +28,8 @@
             <!--Accueil-->
 
             <NavigationViewItemHeader Content="Accueil" Margin="0,10,0,0"/>
-            <NavigationViewItem Content="Trajet du jour" Tag="trajet" Icon="Map"/>
+            <NavigationViewItem Content="Trajet Disponible" Tag="trajet" Icon="Map"/>
+            <NavigationViewItem x:Name="compte" Content="Crée un compte" Tag="compte" Icon="Map"/>
             <NavigationViewItemSeparator/>
 
             <!--Chauffeur-->

@@ -27,6 +27,7 @@ namespace Covoiturage
         NavigationViewItem navA;
         NavigationViewItem navCon;
         NavigationViewItem navDec;
+        NavigationViewItem compte;
 
         internal static Usager U { get => u; set => u = value; }
         public NavigationView Nav { get => nav; set => nav = value; }
@@ -34,6 +35,7 @@ namespace Covoiturage
         public NavigationViewItem NavA { get => navA; set => navA = value; }
         public NavigationViewItem NavCon { get => navCon; set => navCon = value; }
         public NavigationViewItem NavDec { get => navDec; set => navDec = value; }
+        public NavigationViewItem Compte { get => compte; set => compte = value; }
 
         public GestionBD()
         {
@@ -87,7 +89,7 @@ namespace Covoiturage
                 r.Close();
                 con.Close();
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
@@ -128,7 +130,7 @@ namespace Covoiturage
                 r.Close();
                 con.Close();
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
@@ -177,7 +179,7 @@ namespace Covoiturage
                 r.Close();
                 con.Close();
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
@@ -208,7 +210,7 @@ namespace Covoiturage
             r.Close();
             con.Close();
             }
-            catch (Exception ex)
+            catch (MySqlException)
             {
                 con.Close();
             }
@@ -237,7 +239,7 @@ namespace Covoiturage
                 r.Close();
                 con.Close();
             }
-            catch (Exception ex)
+            catch (MySqlException)
             {
                 con.Close();
             }
@@ -272,7 +274,7 @@ namespace Covoiturage
                 r.Close();
                 con.Close();
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
@@ -307,7 +309,7 @@ namespace Covoiturage
                 r.Close();
                 con.Close();
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
@@ -316,169 +318,7 @@ namespace Covoiturage
 
             return liste_trajet;
         }
-
-        public String AjoutVille(String nom)
-        {
-            try
-            {
-                MySqlCommand commande = new MySqlCommand("p_ajout_ville");
-                commande.Connection = con;
-                commande.CommandType = System.Data.CommandType.StoredProcedure;
-
-                commande.Parameters.AddWithValue("@nom", nom);
-
-                con.Open();
-                commande.Prepare();
-                int i = commande.ExecuteNonQuery();
-
-                con.Close();
-            }
-            catch (MySqlException ex)
-            {
-                if (con.State == System.Data.ConnectionState.Open)
-                    con.Close();
-                switch (ex.Number)
-                {
-                    case 1062:
-                        return "Cette ville est déja présente";
-                        break;
-                    default:
-                        throw;
-                }
-            }
-            return "";
-        }
-
-        public void AjoutTrajet(String type, String depart, String arrivee, String arret, DateTime date)
-        {
-            try
-            {
-                MySqlCommand commande = new MySqlCommand("p_ajout_trajet");
-                commande.Connection = con;
-                commande.CommandType = System.Data.CommandType.StoredProcedure;
-
-                commande.Parameters.AddWithValue("@date", date);
-                commande.Parameters.AddWithValue("@voiture", type);
-                commande.Parameters.AddWithValue("@villeDepart", depart);
-                commande.Parameters.AddWithValue("@villeArret", arret);
-                commande.Parameters.AddWithValue("@villeFinale", arrivee);
-                commande.Parameters.AddWithValue("@usager", u.Id);
-
-                con.Open();
-                commande.Prepare();
-                int i = commande.ExecuteNonQuery();
-
-                con.Close();
-            }
-            catch (MySqlException ex)
-            {
-                if (con.State == System.Data.ConnectionState.Open)
-                    con.Close();
-            }
-        }
-
-        public String AjoutInscrit(int id_t, string ville_d, string ville_a)
-        {
-            try
-            {
-                MySqlCommand commande = new MySqlCommand("p_inscription");
-                commande.Connection = con;
-                commande.CommandType = System.Data.CommandType.StoredProcedure;
-
-                commande.Parameters.AddWithValue("@trajet", id_t);
-                commande.Parameters.AddWithValue("@depart", ville_d);
-                commande.Parameters.AddWithValue("@arrive", ville_a);
-
-                con.Open();
-                commande.Prepare();
-                int i = commande.ExecuteNonQuery();
-
-                con.Close();
-            }
-            catch (MySqlException ex)
-            {
-                if (con.State == System.Data.ConnectionState.Open)
-                    con.Close();
-                switch (ex.Number)
-                {
-                    case 1062:
-                        return "Vous êtes déja inscrit à ce trajet";
-                        break;
-                    default:
-                        throw;
-                }
-            }
-            return "";
-        }
-
-        public void getVoiture(ComboBox cmb)
-        {
-
-            liste_trajet.Clear();
-
-            try
-            {
-                MySqlCommand commande = new MySqlCommand("p_select_type_voiture");
-                commande.Connection = con;
-                commande.CommandType = System.Data.CommandType.StoredProcedure;
-
-                //Select
-
-                con.Open();
-                MySqlDataReader r = commande.ExecuteReader();
-                while (r.Read())
-                {
-
-                    cmb.Items.Add(r.GetString(0));
-
-
-                }
-                r.Close();
-                con.Close();
-            }
-            catch (MySqlException ex)
-            {
-                if (con.State == System.Data.ConnectionState.Open)
-                    con.Close();
-            }
-
-        }
-
-        public void getVilleAjout(ComboBox cmb)
-        {
-
-            liste_trajet.Clear();
-
-            try
-            {
-                MySqlCommand commande = new MySqlCommand("p_selectAll_ville");
-                commande.Connection = con;
-                commande.CommandType = System.Data.CommandType.StoredProcedure;
-
-                //Select
-
-                con.Open();
-                MySqlDataReader r = commande.ExecuteReader();
-                while (r.Read())
-                {
-
-                    cmb.Items.Add(r.GetString(1));
-
-
-                }
-                r.Close();
-                con.Close();
-            }
-            catch (MySqlException ex)
-            {
-                if (con.State == System.Data.ConnectionState.Open)
-                    con.Close();
-            }
-
-        }
-
-
-        public Usager getUsager(string email, string mdp)
+        public Boolean getUsager(string email, string mdp)
         {
 
             try
@@ -514,17 +354,205 @@ namespace Covoiturage
                 }
                 navCon.Visibility = Visibility.Collapsed;
                 navDec.Visibility = Visibility.Visible;
+                compte.Visibility = Visibility.Collapsed;
                 r.Close();
                 con.Close();
-                return u;
+                return true;
+            }
+            catch (MySqlException)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+                return false;
+            }
+
+        }
+
+        public void getVoiture(ComboBox cmb)
+        {
+
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_select_type_voiture");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //Select
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+
+                    cmb.Items.Add(r.GetString(0));
+
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public void getVilleAjout(ComboBox cmb)
+        {
+
+            liste_trajet.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_selectAll_ville");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //Select
+
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+
+                    cmb.Items.Add(r.GetString(1));
+
+
+                }
+                r.Close();
+                con.Close();
+            }
+            catch (MySqlException)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public String AjoutVille(String nom)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_ajout_ville");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@nom", nom);
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
             }
             catch (MySqlException ex)
             {
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
-                return u;
+                switch (ex.Number)
+                {
+                    case 1062:
+                        return "Cette ville est déja présente";
+                    default:
+                        throw;
+                }
             }
+            return "";
+        }
 
+        public void AjoutTrajet(String type, String depart, String arrivee, String arret, DateTime date)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_ajout_trajet");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@date", date);
+                commande.Parameters.AddWithValue("@voiture", type);
+                commande.Parameters.AddWithValue("@villeDepart", depart);
+                commande.Parameters.AddWithValue("@villeArret", arret);
+                commande.Parameters.AddWithValue("@villeFinale", arrivee);
+                commande.Parameters.AddWithValue("@usager", u.Id);
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (MySqlException)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+        public String AjoutInscrit(int id_t, string ville_d, string ville_a)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_inscription");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@trajet", id_t);
+                commande.Parameters.AddWithValue("@depart", ville_d);
+                commande.Parameters.AddWithValue("@arrive", ville_a);
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+                switch (ex.Number)
+                {
+                    case 1062:
+                        return "Vous êtes déja inscrit à ce trajet";
+                    default:
+                        throw;
+                }
+            }
+            return "";
+        }
+
+        public void AjoutUsager(Usager u)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_ajout_user");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@pnom", u.Nom);
+                commande.Parameters.AddWithValue("@pprenom", u.Prenom);
+                commande.Parameters.AddWithValue("@padresse", u.Adresse);
+                commande.Parameters.AddWithValue("@pnum_tel", u.NumTel);
+                commande.Parameters.AddWithValue("@pemail", u.Email);
+                commande.Parameters.AddWithValue("@pmdp", u.Mdp);
+                commande.Parameters.AddWithValue("@ptype", u.TypeUsager);
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (MySqlException)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
         }
 
         public void decon()
@@ -537,10 +565,11 @@ namespace Covoiturage
             }
             navCon.Visibility = Visibility.Visible;
             navDec.Visibility = Visibility.Collapsed;
+            compte.Visibility = Visibility.Visible;
         }
 
 
-            public int verificationText(TextBox box, TextBlock erreur)
+        public int verificationText(TextBox box, TextBlock erreur)
         {
             if (box.Text.Length <= 0)
             {
@@ -551,6 +580,42 @@ namespace Covoiturage
             else
             {
                 erreur.Visibility = Visibility.Collapsed;
+                return 0;
+            }
+        }
+        public int verificationMdp(PasswordBox box, TextBlock erreur)
+        {
+            if (box.Password.Length <= 0)
+            {
+                erreur.Text = "Ce champ est obligatoire";
+                erreur.Visibility = Visibility.Visible;
+                return 1;
+            }
+            else
+            {
+                erreur.Visibility = Visibility.Collapsed;
+                return 0;
+            }
+        }
+
+        public int verificationMdp(PasswordBox box, PasswordBox Confbox, TextBlock erreur, TextBlock Conferr)
+        {
+            if (box.Password.Length <= 0)
+            {
+                erreur.Text = "Ce champ est obligatoire";
+                erreur.Visibility = Visibility.Visible;
+                return 1;
+            }
+            else if(box.Password != Confbox.Password)
+            {
+                Conferr.Text = "Le mot de passe n'est pas identique";
+                Conferr.Visibility = Visibility.Visible;
+                return 0;
+            }
+            else
+            {
+                erreur.Visibility = Visibility.Collapsed;
+                Conferr.Visibility = Visibility.Collapsed;
                 return 0;
             }
         }

@@ -34,6 +34,7 @@ namespace Covoiturage
             GestionBD.getInstance().NavA = admin;
             GestionBD.getInstance().NavCon = iConnexion;
             GestionBD.getInstance().NavDec = iDeconnexion;
+            GestionBD.getInstance().Compte = compte;
             mainFrame.Navigate(typeof(Afficher_trajets));
             
         }
@@ -73,6 +74,9 @@ namespace Covoiturage
                         break;
                     case "revenue":
                         mainFrame.Navigate(typeof(Revenue));
+                        break;
+                    case "compte":
+                        mainFrame.Navigate(typeof(Ajout_compte));
                         break;
                     default:
                         break;
