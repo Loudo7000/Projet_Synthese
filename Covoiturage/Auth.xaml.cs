@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -38,7 +39,13 @@ namespace Covoiturage
             if (valide == 0)
             {
                 if(GestionBD.getInstance().getUsager(email.Text, mdp.Password))
-                this.Frame.Navigate(typeof(Historique));
+                    switch (GestionBD.U.TypeUsager)
+                    {
+                        case "chauffeur": this.Frame.Navigate(typeof(Historique)); break;
+                        case "admin": this.Frame.Navigate(typeof(Info_trajet)); break;
+                        case "passager": this.Frame.Navigate(typeof(Afficher_trajets)); ; break;
+                    }
+                
             }
 
         }

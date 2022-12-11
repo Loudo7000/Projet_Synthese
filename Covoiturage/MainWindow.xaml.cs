@@ -88,6 +88,7 @@ namespace Covoiturage
         private void iDeconnexion_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GestionBD.getInstance().decon();
+            tblentete.Text = "Trajet Disponible";
             mainFrame.Navigate(typeof(Afficher_trajets));
         }
 

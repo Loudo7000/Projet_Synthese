@@ -106,9 +106,12 @@ namespace Covoiturage
 
             try
             {
-                MySqlCommand commande = new MySqlCommand("p_affiche_trajet");
+                MySqlCommand commande = new MySqlCommand("p_affiche_histo");
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("@chauffeur", u.Id);
+
 
                 con.Open();
                 MySqlDataReader r = commande.ExecuteReader();
@@ -117,14 +120,15 @@ namespace Covoiturage
                     liste_trajet.Add(new Trajets()
                     {
                         Id = r.GetInt32(0),
-                        Date_depart = r.GetString(3),
-                        Place_depart = r.GetInt32(4),
-                        Ville_depart = r.GetString(5),
-                        Ville_arret = r.GetString(7),
-                        Ville_arrivee = r.GetString(8),
-                        Nb_personne = r.GetInt32(9),
-                        Rev_brut = r.GetInt32(10),
-                        Rev_societe = r.GetInt32(11),
+                        Date_depart = r.GetString(1),
+                        Place_depart = r.GetInt32(2),
+                        Ville_depart = r.GetString(3),
+                        Place_arret = r.GetInt32(4),
+                        Ville_arret = r.GetString(5),
+                        Ville_arrivee = r.GetString(6),
+                        Nb_personne = r.GetInt32(7),
+                        Rev_brut = r.GetInt32(8),
+                        Rev_societe = r.GetInt32(9),
                     });
 
                 }
@@ -352,6 +356,7 @@ namespace Covoiturage
                 {
                     case "chauffeur": navC.Visibility=Visibility.Visible ; break;
                     case "admin": navA.Visibility=Visibility.Visible ; break;
+                    case "passager": compte.Visibility=Visibility.Visible ; break;
                 }
                 navCon.Visibility = Visibility.Collapsed;
                 navDec.Visibility = Visibility.Visible;
@@ -505,6 +510,7 @@ namespace Covoiturage
                 commande.Parameters.AddWithValue("@trajet", id_t);
                 commande.Parameters.AddWithValue("@depart", ville_d);
                 commande.Parameters.AddWithValue("@arrive", ville_a);
+                commande.Parameters.AddWithValue("@usager", u.Id);
 
                 con.Open();
                 commande.Prepare();
