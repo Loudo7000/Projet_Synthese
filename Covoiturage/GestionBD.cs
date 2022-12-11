@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Animation;
 using Windows.Storage.AccessCache;
 using Org.BouncyCastle.Asn1.Cms;
+using System.Security.Cryptography;
 
 namespace Covoiturage
 {
@@ -328,7 +329,7 @@ namespace Covoiturage
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
                 commande.Parameters.AddWithValue("@mail", email);
-                commande.Parameters.AddWithValue("@pass", mdp);
+                commande.Parameters.AddWithValue("@pass", genererSHA256(mdp));
 
                 con.Open();
                 commande.Prepare();
@@ -539,7 +540,7 @@ namespace Covoiturage
                 commande.Parameters.AddWithValue("@padresse", u.Adresse);
                 commande.Parameters.AddWithValue("@pnum_tel", u.NumTel);
                 commande.Parameters.AddWithValue("@pemail", u.Email);
-                commande.Parameters.AddWithValue("@pmdp", u.Mdp);
+                commande.Parameters.AddWithValue("@pmdp", genererSHA256(u.Mdp));
                 commande.Parameters.AddWithValue("@ptype", u.TypeUsager);
 
                 con.Open();
@@ -566,6 +567,18 @@ namespace Covoiturage
             navCon.Visibility = Visibility.Visible;
             navDec.Visibility = Visibility.Collapsed;
             compte.Visibility = Visibility.Visible;
+        }
+
+        private string genererSHA256(string texte)
+        {
+            var sha256 = SHA256.Create();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(texte));
+
+            StringBuilder sb = new StringBuilder();
+            foreach (Byte b in bytes)
+                sb.Append(b.ToString("x2"));
+
+            return sb.ToString();
         }
 
 

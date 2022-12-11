@@ -11,96 +11,103 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ScrollViewer>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
 
-            <GridView Grid.Column="0" x:Name="infoListe" HorizontalAlignment="Left" IsEnabled="False">
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="local:Trajets">
-                        <StackPanel Margin="25">
+        <ScrollViewer>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Id de trajet :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Id}" Margin="5,5,5,10"/>
+                <GridView Grid.Column="0" x:Name="infoListe" HorizontalAlignment="Left" IsEnabled="False">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Trajets">
+                            <StackPanel Margin="25">
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Id de trajet :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Id}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Id du chauffeur :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Id_chauffeur}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Nom du chauffeur :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Chauffeur}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Type de voiture :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Voiture}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Places au depart :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Place_depart}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Date de depart :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Ville de depart :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Ville_depart}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Ville d'arret :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Ville_arret}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Places a l'arret :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Place_arret}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Ville d'arrivee :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Ville_arrivee}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Total de personne :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Nb_personne}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Revenu Chauffeur :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Rev_chauffeur}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Revenu Societe :" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind Rev_societe}" Margin="5,5,5,10"/>
+                                </StackPanel>
+
                             </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Id du chauffeur :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Id_chauffeur}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Nom du chauffeur :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Chauffeur}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Type de voiture :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Voiture}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Places au depart :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Place_depart}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Date de depart :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Ville de depart :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Ville_depart}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Ville d'arret :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Ville_arret}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Places a l'arret :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Place_arret}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Ville d'arrivee :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Ville_arrivee}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Total de personne :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Nb_personne}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Revenu Chauffeur :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Rev_chauffeur}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Revenu Societe :" Margin="5,5,5,10"/>
-                                <TextBlock Text="{x:Bind Rev_societe}" Margin="5,5,5,10"/>
-                            </StackPanel>
-
-                        </StackPanel>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-
-            <StackPanel Grid.Column="1" Margin="0,0,100,0">
+            </Grid>
+        </ScrollViewer>
+        
+        <StackPanel Grid.Column="1" Margin="0,0,100,0">
                 <DatePicker  x:Name="datDeb" Header="Recherche entre deux dates" Width="300px" Margin="0,10,0,0"/>
                 <TextBlock x:Name="errDatDeb" Foreground="Red"  Visibility="Collapsed"/>
                 <DatePicker  x:Name="datFin" Width="300px" Margin="0,10,0,0"/>
                 <TextBlock x:Name="errDatFin" Foreground="Red"  Visibility="Collapsed"/>
                 <Button x:Name="btnDat" Content="Rechercher" Click="btnDat_Click" Margin="0,10,0,0"/>
             </StackPanel>
-            
-        </Grid>
-    </ScrollViewer>
+    </Grid>
 </Page>
