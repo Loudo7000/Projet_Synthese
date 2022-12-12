@@ -32,7 +32,7 @@ namespace Covoiturage
         NavigationViewItem navCon;
         NavigationViewItem navDec;
         NavigationViewItem compte;
-
+        MainWindow main;
         internal static Usager U { get => u; set => u = value; }
         public NavigationView Nav { get => nav; set => nav = value; }
         public NavigationViewItem NavC { get => navC; set => navC = value; }
@@ -40,6 +40,7 @@ namespace Covoiturage
         public NavigationViewItem NavCon { get => navCon; set => navCon = value; }
         public NavigationViewItem NavDec { get => navDec; set => navDec = value; }
         public NavigationViewItem Compte { get => compte; set => compte = value; }
+        public MainWindow Main { get => main; set => main = value; }
 
         public GestionBD()
         {

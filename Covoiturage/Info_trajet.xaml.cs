@@ -49,7 +49,7 @@ namespace Covoiturage
             var picker = new Windows.Storage.Pickers.FileSavePicker();
 
             /******************** POUR WINUI3 ***************************/
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(GestionBD.getInstance().Main);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
             /************************************************************/
 

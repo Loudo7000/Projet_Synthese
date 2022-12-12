@@ -25,7 +25,7 @@ namespace Covoiturage
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-
+        
         public MainWindow()
         {
             this.InitializeComponent();
@@ -35,6 +35,7 @@ namespace Covoiturage
             GestionBD.getInstance().NavCon = iConnexion;
             GestionBD.getInstance().NavDec = iDeconnexion;
             GestionBD.getInstance().Compte = compte;
+            GestionBD.getInstance().Main = this;
             mainFrame.Navigate(typeof(Afficher_trajets));
             
         }
