@@ -28,6 +28,14 @@ namespace Covoiturage
         {
             this.InitializeComponent();
             trajetListe.ItemsSource = GestionBD.getInstance().GetListeTrajet();
+            if(GestionBD.U.TypeUsager == "passager")
+            {
+                stk.Visibility= Visibility.Visible;
+            }
+            else
+            {
+                stk.Visibility= Visibility.Collapsed;
+            }
         }
 
         private void inscrit_Click(object sender, RoutedEventArgs e)

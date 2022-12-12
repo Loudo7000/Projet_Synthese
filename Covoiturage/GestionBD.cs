@@ -17,11 +17,14 @@ namespace Covoiturage
     internal class GestionBD
     {
         MySqlConnection con;
-        ObservableCollection<Trajets> liste_trajet;
+        List<Trajets> liste_trajet;
         ObservableCollection<Arrêt> liste_ville_arret;
         ObservableCollection<Ville> liste_ville;
         static GestionBD gestionBD = null;
-        static Usager u;
+        static Usager u = new Usager()
+        {
+            TypeUsager = " ",
+        };
 
         NavigationView nav;
         NavigationViewItem navC;
@@ -42,7 +45,7 @@ namespace Covoiturage
         {
             
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2022_420326ri_eq16;Uid=2168091;Pwd=2168091;");
-            liste_trajet = new ObservableCollection<Trajets>();
+            liste_trajet = new List<Trajets>();
             liste_ville_arret = new ObservableCollection<Arrêt>();
             liste_ville = new ObservableCollection<Ville>();
         }
@@ -55,7 +58,7 @@ namespace Covoiturage
             return gestionBD;
         }
 
-        public ObservableCollection<Trajets> GetListeTrajet()
+        public List<Trajets> GetListeTrajet()
         {
             liste_trajet.Clear();
 
@@ -100,7 +103,7 @@ namespace Covoiturage
             return liste_trajet;
         }
 
-        public ObservableCollection<Trajets> GetListehisto()
+        public List<Trajets> GetListehisto()
         {
             liste_trajet.Clear();
 
@@ -146,7 +149,7 @@ namespace Covoiturage
         }
 
 
-        public ObservableCollection<Trajets> GetListeDateinfo(DateTime dateA, DateTime dateB)
+        public List<Trajets> GetListeDateinfo(DateTime dateA, DateTime dateB)
         {
             liste_trajet.Clear();
 
@@ -251,7 +254,7 @@ namespace Covoiturage
             return liste_ville;
         }
 
-        public ObservableCollection<Trajets> GetRevenu(DateTime date)
+        public List<Trajets> GetRevenu(DateTime date)
         {
             liste_trajet.Clear();
 
@@ -289,7 +292,7 @@ namespace Covoiturage
             return liste_trajet;
         }
 
-        public ObservableCollection<Trajets> GetPersonne(int id)
+        public List<Trajets> GetPersonne(int id)
         {
             liste_trajet.Clear();
 

@@ -39,5 +39,11 @@ namespace Covoiturage
         public int Id_chauffeur { get => id_chauffeur; set => id_chauffeur = value; }
         public int Rev_chauffeur { get => rev_chauffeur; set => rev_chauffeur = value; }
         public string Personne { get => personne; set => personne = value; }
+        public string ExportCSV()
+        {
+            return $"{id};{Chauffeur};{Voiture};{Date_depart};{Place_depart};{Ville_depart};{Place_arret};{Ville_arret};{Nb_personne};{Rev_chauffeur};{Rev_societe}";
+        }
     }
-}
+    }
+
+

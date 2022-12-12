@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,5 +44,29 @@ namespace Covoiturage
             infoListe.ItemsSource = GestionBD.getInstance().GetListeDateinfo(datDeb.Date.Date, datFin.Date.Date);
         }
 
+        private async void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            /******************** POUR WINUI3 ***************************/
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+            /************************************************************/
+
+            picker.SuggestedFileName = "ExportInfo";
+            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".csv" });
+
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+            int valide = 0;
+
+            valide += GestionBD.getInstance().verificationDate(datDeb, errDatDeb);
+            valide += GestionBD.getInstance().verificationDate(datFin, errDatFin);
+
+            if (valide == 0)
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, GestionBD.getInstance().GetListeDateinfo(datDeb.Date.Date, datFin.Date.Date).ConvertAll(x => x.ExportCSV()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+
+        }
     }
 }

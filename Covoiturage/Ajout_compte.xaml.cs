@@ -56,6 +56,29 @@ namespace Covoiturage
                     TypeUsager = typeUsager.SelectedItem.ToString(),
                 }
                 );
+
+                if (GestionBD.getInstance().getUsager(email.Text, mdp.Password))
+                    switch (GestionBD.U.TypeUsager)
+                    {
+                        case "chauffeur":
+                            {
+                                this.Frame.Navigate(typeof(Historique));
+                                GestionBD.getInstance().Nav.Header = "Historique";
+                            }
+                            break;
+                        case "admin":
+                            {
+                                this.Frame.Navigate(typeof(Info_trajet));
+                                GestionBD.getInstance().Nav.Header = "Info Trajet";
+                            }
+                            break;
+                        case "passager":
+                            {
+                                this.Frame.Navigate(typeof(Afficher_trajets));
+                                GestionBD.getInstance().Nav.Header = "Trajet Disponible";
+                            }
+                            break;
+                    }
             }
 
         }

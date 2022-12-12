@@ -27,6 +27,7 @@
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="local:Trajets">
                                 <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">
+                                    
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Nom du chauffeur :" Margin="5,5,5,10"/>
                                         <TextBlock Text="{x:Bind Chauffeur}" Margin="5,5,5,10"/>
@@ -36,16 +37,16 @@
                                         <TextBlock Text="{x:Bind Voiture}" Margin="5,5,5,10"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Date de départ :" Margin="5,5,5,10"/>
+                                        <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Nombre de place :" Margin="5,5,5,10"/>
                                         <TextBlock Text="{x:Bind Place_depart}" Margin="5,5,5,10"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Ville de départ :" Margin="5,5,5,10"/>
                                         <TextBlock Text="{x:Bind Ville_depart}" Margin="5,5,5,10"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Date de départ :" Margin="5,5,5,10"/>
-                                        <TextBlock Text="{x:Bind Date_depart}" Margin="5,5,5,10"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Ville d'arrêt :" Margin="5,5,5,10"/>
@@ -66,7 +67,7 @@
             </StackPanel>
         </ScrollViewer>
         
-        <StackPanel Grid.Column="1" Margin="0,0,100,0">
+        <StackPanel x:Name="stk" Grid.Column="1" Visibility="Collapsed" Margin="0,0,100,0">
             <ComboBox x:Name="choix" SelectedIndex="0">
                 <x:String>Trajet complet</x:String>
                 <x:String>Ville de départ à l'arrêt</x:String>
