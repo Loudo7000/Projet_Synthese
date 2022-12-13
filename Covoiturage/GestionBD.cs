@@ -17,7 +17,7 @@ namespace Covoiturage
     internal class GestionBD
     {
         MySqlConnection con;
-        List<Trajets> liste_trajet;
+        ObservableCollection<Trajets> liste_trajet;
         ObservableCollection<Arrêt> liste_ville_arret;
         ObservableCollection<Ville> liste_ville;
         static GestionBD gestionBD = null;
@@ -46,7 +46,7 @@ namespace Covoiturage
         {
             
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2022_420326ri_eq16;Uid=2168091;Pwd=2168091;");
-            liste_trajet = new List<Trajets>();
+            liste_trajet = new ObservableCollection<Trajets>();
             liste_ville_arret = new ObservableCollection<Arrêt>();
             liste_ville = new ObservableCollection<Ville>();
         }
@@ -59,7 +59,7 @@ namespace Covoiturage
             return gestionBD;
         }
 
-        public List<Trajets> GetListeTrajet()
+        public ObservableCollection<Trajets> GetListeTrajet()
         {
             liste_trajet.Clear();
 
@@ -104,7 +104,7 @@ namespace Covoiturage
             return liste_trajet;
         }
 
-        public List<Trajets> GetListehisto()
+        public ObservableCollection<Trajets> GetListehisto()
         {
             liste_trajet.Clear();
 
@@ -151,7 +151,7 @@ namespace Covoiturage
         }
 
 
-        public List<Trajets> GetListeDateinfo(DateTime dateA, DateTime dateB)
+        public ObservableCollection<Trajets> GetListeDateinfo(DateTime dateA, DateTime dateB)
         {
             liste_trajet.Clear();
 
@@ -256,7 +256,7 @@ namespace Covoiturage
             return liste_ville;
         }
 
-        public List<Trajets> GetRevenu(DateTime date)
+        public ObservableCollection<Trajets> GetRevenu(DateTime date)
         {
             liste_trajet.Clear();
 
@@ -294,7 +294,7 @@ namespace Covoiturage
             return liste_trajet;
         }
 
-        public List<Trajets> GetPersonne(int id)
+        public ObservableCollection<Trajets> GetPersonne(int id)
         {
             liste_trajet.Clear();
 
@@ -582,6 +582,13 @@ namespace Covoiturage
             {
                 TypeUsager = " ",
             };
+        }
+
+        public List<Trajets> toList()
+        {
+            List<Trajets> list = new List<Trajets>(liste_trajet);
+
+            return list;
         }
 
         private string genererSHA256(string texte)

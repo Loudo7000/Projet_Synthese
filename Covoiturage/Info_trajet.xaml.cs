@@ -65,7 +65,7 @@ namespace Covoiturage
             valide += GestionBD.getInstance().verificationDate(datFin, errDatFin);
 
             if (valide == 0)
-                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, GestionBD.getInstance().GetListeDateinfo(datDeb.Date.Date, datFin.Date.Date).ConvertAll(x => x.ExportCSV()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            await Windows.Storage.FileIO.WriteLinesAsync(monFichier, GestionBD.getInstance().toList().ConvertAll(x => x.ExportCSV()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
 
         }
     }
