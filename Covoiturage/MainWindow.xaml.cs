@@ -46,7 +46,7 @@ namespace Covoiturage
 
             if (item.Name.ToString() == "")
             {
-                tblentete.Text = item.Content.ToString();
+                GestionBD.getInstance().Nav.Header = item.Content.ToString();
                 switch (item.Tag.ToString())
                 {
                     case "trajet":
@@ -68,7 +68,7 @@ namespace Covoiturage
             else
             {
                 if(item.Tag.ToString()!="default")
-                tblentete.Text = item.Tag.ToString();
+                GestionBD.getInstance().Nav.Header = item.Tag.ToString();
                 switch (item.Name.ToString()) {
                     case "TrajetInf":
                         mainFrame.Navigate(typeof(Info_trajet));

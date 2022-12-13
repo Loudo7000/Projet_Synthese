@@ -41,12 +41,12 @@
                             <TextBlock Text="{x:Bind Nb_personne}" Margin="5,5,5,10"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Revenu brut :" Margin="5,5,5,10"/>
-                            <TextBlock Text="{x:Bind Rev_brut}" Margin="5,5,5,10"/>
+                            <TextBlock Text="Revenu chauffeur :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Rev_chauffeur}" Margin="5,5,5,10"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Revenu brut :" Margin="5,5,5,10"/>
-                            <TextBlock Text="{x:Bind Rev_brut}" Margin="5,5,5,10"/>
+                            <TextBlock Text="Revenu societe :" Margin="5,5,5,10"/>
+                            <TextBlock Text="{x:Bind Rev_societe}" Margin="5,5,5,10"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>

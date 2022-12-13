@@ -132,7 +132,8 @@ namespace Covoiturage
                         Ville_arrivee = r.GetString(6),
                         Nb_personne = r.GetInt32(7),
                         Rev_brut = r.GetInt32(8),
-                        Rev_societe = r.GetInt32(9),
+                        Rev_chauffeur = r.GetInt32(9),
+                        Rev_societe = r.GetInt32(10),
                     });
 
                 }
@@ -577,6 +578,10 @@ namespace Covoiturage
             navCon.Visibility = Visibility.Visible;
             navDec.Visibility = Visibility.Collapsed;
             compte.Visibility = Visibility.Visible;
+            U = new Usager()
+            {
+                TypeUsager = " ",
+            };
         }
 
         private string genererSHA256(string texte)

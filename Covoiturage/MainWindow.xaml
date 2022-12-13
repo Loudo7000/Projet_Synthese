@@ -19,7 +19,7 @@
 
        <NavigationView.Header>
 
-            <TextBlock Text="Trajet du jour" x:Name="tblentete" />
+            <TextBlock Text="Trajet Disponible" x:Name="tblentete" />
             
         </NavigationView.Header>
 
@@ -29,11 +29,11 @@
 
             <NavigationViewItemHeader Content="Accueil" Margin="0,10,0,0"/>
             <NavigationViewItem Content="Trajet Disponible" Tag="trajet" Icon="Map"/>
-            <NavigationViewItem x:Name="compte" Content="Crée un compte" Tag="compte" Icon="Map"/>
+            <NavigationViewItem x:Name="compte" Content="Crée un compte" Tag="Création de compte" Icon="AddFriend"/>
             <NavigationViewItemSeparator/>
 
             <!--Chauffeur-->
-            <NavigationViewItem x:Name="chauffeur" Visibility="Collapsed" Content="Chauffeur" Tag="default">
+            <NavigationViewItem x:Name="chauffeur" Visibility="Collapsed" Content="Chauffeur" Tag="default" Icon="MapPin">
                 <NavigationViewItem.MenuItems>
                     <NavigationViewItem Content="Créer un Trajet" Tag="Trajetch" Icon="Add"/>
 
@@ -45,7 +45,7 @@
 
 
 
-            <NavigationViewItem x:Name="admin" Visibility="Collapsed" Content="Admin" Tag="default">
+            <NavigationViewItem x:Name="admin" Visibility="Collapsed" Content="Admin" Tag="default" Icon="Admin">
                 <NavigationViewItem.MenuItems>
                     <NavigationViewItem Content="Ajouts d'une Ville" Tag="ville" Icon="Add"/>
 
