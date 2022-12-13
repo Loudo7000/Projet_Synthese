@@ -1,13 +1,30 @@
 # Projet_Synthese
 
 Travail effectué par Maxime:
+- Création de page
+  - Afficher_trajets
+  - Ajout_trajet
+  - Historique
+  - Ajout_ville
+  - Info_trajet
+  - Revenue
+  
+- c# NavigationView
+- Validation
+- Correction erreur
 
 Travail effectué par Ludovic:
-- tout ce qui concerne la base de données ( travail sur DataGrip )
+- Tout ce qui concerne la base de données ( travail sur DataGrip )
   - Création des tables
   - Création des View
   - Procédure
+  
+- Création de page
+  - Ajout_compte
+  - Auth ( Authentification) 
+  
 - Xaml NavigationView
 - Connexion/déconnexion des usagers 
-- droit des usagers (visibilité des bouton selon le type d'usager )
+- Droit des usagers (visibilité des bouton selon le type d'usager )
 - Exportation vers fichier csv
+- Correction erreur
