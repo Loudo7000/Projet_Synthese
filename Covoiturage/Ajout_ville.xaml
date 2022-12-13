@@ -15,7 +15,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         
         <ListView x:Name="villeListe" IsEnabled="False">
