@@ -52,16 +52,26 @@ namespace Covoiturage
                 switch (choix.SelectedIndex)
                 {
                     case 0:
-                        if(GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arrivee) != "")
+                        if(t.Place_arret > 0 || t.Place_depart > 0)
                         {
-                            err.Text = GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arrivee);
-                            err.Visibility = Visibility.Visible;
+                            if(GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arrivee) != "")
+                            {
+                                err.Text = GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arrivee);
+                                err.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                err.Visibility = Visibility.Collapsed;
+                                this.Frame.Navigate(typeof(Afficher_trajets));
+                            }
                         }
                         else
                         {
-                            err.Visibility = Visibility.Collapsed;
-                            this.Frame.Navigate(typeof(Afficher_trajets));
+                            err.Text = "trajet complet indisponible";
+                            err.Visibility = Visibility.Visible;
                         }
+
+
                         break;
                     case 1:
                         if(GestionBD.getInstance().AjoutInscrit(t.Id, t.Ville_depart, t.Ville_arret) != "")
