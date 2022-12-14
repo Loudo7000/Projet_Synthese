@@ -89,7 +89,7 @@ namespace Covoiturage
         private void iDeconnexion_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GestionBD.getInstance().decon();
-            tblentete.Text = "Trajet Disponible";
+            GestionBD.getInstance().Nav.Header = "Trajet Disponible";
             mainFrame.Navigate(typeof(Afficher_trajets));
         }
 
@@ -98,5 +98,6 @@ namespace Covoiturage
             tblentete.Text = "Connexion";
             mainFrame.Navigate(typeof(Auth));
         }
+
     }
 }

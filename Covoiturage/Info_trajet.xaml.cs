@@ -46,6 +46,8 @@ namespace Covoiturage
 
         private async void btnExport_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
             var picker = new Windows.Storage.Pickers.FileSavePicker();
 
             /******************** POUR WINUI3 ***************************/
@@ -59,13 +61,16 @@ namespace Covoiturage
             //crée le fichier
             Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
 
-            int valide = 0;
 
-            valide += GestionBD.getInstance().verificationDate(datDeb, errDatDeb);
-            valide += GestionBD.getInstance().verificationDate(datFin, errDatFin);
-
-            if (valide == 0)
             await Windows.Storage.FileIO.WriteLinesAsync(monFichier, GestionBD.getInstance().toList().ConvertAll(x => x.ExportCSV()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            errExp.Visibility = Visibility.Collapsed;
+
+            }
+            catch (Exception)
+            {
+                errExp.Text = "Problème d'exportaion";
+                errExp.Visibility = Visibility.Visible;
+            }
 
         }
     }

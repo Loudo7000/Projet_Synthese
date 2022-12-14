@@ -11,6 +11,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+
     <ScrollViewer>
         <GridView x:Name="histoListe" SelectionChanged="histoListe_SelectionChanged">
             <GridView.ItemTemplate>

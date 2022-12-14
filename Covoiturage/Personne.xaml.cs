@@ -40,5 +40,11 @@ namespace Covoiturage
             Trajets t = (object)e.Parameter as Trajets;
             persoliste.ItemsSource = GestionBD.getInstance().GetPersonne(t.Id);
         }
+
+        private void goback_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Frame.CanGoBack)
+                this.Frame.GoBack();
+        }
     }
 }

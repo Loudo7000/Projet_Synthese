@@ -86,8 +86,10 @@ namespace Covoiturage
                         Ville_arrivee = r.GetString(8),
                         Nb_personne = r.GetInt32(9),
                         Rev_brut = r.GetInt32(10),
-                        Rev_societe = r.GetInt32(11),
-                        Id_chauffeur = r.GetInt32(13),
+                        Rev_chauffeur = r.GetInt32(11),
+                        Rev_societe = r.GetInt32(12),
+                        Etat = r.GetString(13),
+                        Id_chauffeur = r.GetInt32(14),
                     });
 
                 }
@@ -180,8 +182,10 @@ namespace Covoiturage
                         Ville_arret = r.GetString(7),
                         Ville_arrivee = r.GetString(8),
                         Nb_personne = r.GetInt32(9),
-                        Rev_brut = r.GetInt32(10),
-                        Rev_societe = r.GetInt32(11),
+                        Rev_brut = r.GetDouble(10),
+                        Rev_chauffeur = r.GetDouble(11),
+                        Rev_societe = r.GetDouble(12),
+                        Etat = r.GetString(12),
                         Id_chauffeur = r.GetInt32(13),
                     });
 
@@ -530,6 +534,8 @@ namespace Covoiturage
                 switch (ex.Number)
                 {
                     case 1062:
+                        return "Vous êtes déja inscrit à ce trajet";
+                    case 1452:
                         return "Vous êtes déja inscrit à ce trajet";
                     default:
                         throw;

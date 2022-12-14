@@ -23,7 +23,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                 
-                    <GridView x:Name="trajetListe" Grid.Column="0" HorizontalAlignment="Left">
+                    <GridView x:Name="trajetListe" Grid.Column="0" HorizontalAlignment="Left" IsEnabled="False">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="local:Trajets">
                                 <StackPanel Orientation="Vertical" Margin="40,40,80,40" HorizontalAlignment="Stretch">

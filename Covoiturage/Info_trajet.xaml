@@ -100,12 +100,14 @@
         <StackPanel Grid.Column="1" Margin="0,0,100,0">
             <DatePicker  x:Name="datDeb" Header="Recherche entre deux dates" Width="300px" Margin="0,10,0,0"/>
             <TextBlock x:Name="errDatDeb" Foreground="Red"  Visibility="Collapsed"/>
-            
             <DatePicker  x:Name="datFin" Width="300px" Margin="0,10,0,0"/>
             <TextBlock x:Name="errDatFin" Foreground="Red"  Visibility="Collapsed"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                <Button x:Name="btnDat" Content="Rechercher" Click="btnDat_Click" Width="140" Margin="0,0,20,0"/>
-                <Button x:Name="btnExport" Content="Exporter" Click="btnExport_Click" Width="140" Margin="0,0,0,0"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnDat" Content="Rechercher" Click="btnDat_Click" Width="140" Margin="0,0,20,0"/>
+                    <Button x:Name="btnExport" Content="Exporter" Click="btnExport_Click" Width="140" Margin="0,0,0,0"/>
+                </StackPanel>
+                <TextBlock x:Name="errExp" Foreground="Red"  Visibility="Collapsed"/>
             </StackPanel>
         </StackPanel>
     </Grid>

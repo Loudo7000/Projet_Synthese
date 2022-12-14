@@ -10,18 +10,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
-    
-    <StackPanel>
-        <TextBlock Text="Nom des passagers" FontSize="30" Margin="20"/>
-        <ListView x:Name="persoliste" IsEnabled="False">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Trajets">
-                    <StackPanel Orientation="Vertical" Padding="0,0,60,0">
-                        <TextBlock  Text="{x:Bind Personne}" FontSize="20" Margin="5,5,5,10"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackPanel>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Text="Nom des passagers" FontSize="30" Margin="20"/>
+            <ListView x:Name="persoliste" IsEnabled="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Trajets">
+                        <StackPanel Orientation="Vertical" Padding="0,0,60,0">
+                            <TextBlock  Text="{x:Bind Personne}" FontSize="20" Margin="5,5,5,10"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Button  x:Name="goback" Click="goback_Click"  Content="Retour"/>
+        </StackPanel>
+    </Grid>
 </Page>
